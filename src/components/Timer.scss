@@ -32,11 +32,10 @@
   height: 100%;
   background-color: #0A5F44;
   // background: linear-gradient(-90deg, red 50%, black 50%);
-  -webkit-animation: timerBar 45s ease-in-out;
-  animation: timerBar 45s ease-in-out;
+  -webkit-animation: timerBar 45s ease-in-out, colorchange 45s linear infinite;
+  animation: timerBar 45s ease-in-out, colorchange 45s linear infinite; 
   -webkit-animation-fill-mode:both; 
   animation-fill-mode:both; 
-
 }
 
 @-webkit-keyframes timerBar {
@@ -48,3 +47,19 @@
   100% { width: 0; }
   0% { width: 100%; }
 }
+
+@keyframes colorchange
+    {
+      0%   {background: #0A5F44;}
+      50%  {background: #F8F800;}
+      70%  {background: #F70000;}
+      100%  {background: #F70000;}
+   }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: #0A5F44;}
+      50%  {background: #F8F800;}
+      70%  {background: #F70000;}
+      100%  {background: #F70000;}
+   }
