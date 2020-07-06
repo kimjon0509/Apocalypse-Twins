@@ -1,0 +1,170 @@
+@font-face {
+  font-family: 'tox';
+  src: url('../fonts/tox_typewriter/Tox\ Typewriter.ttf')  format('truetype')
+}
+
+@font-face {
+  font-family: 'scratchies';
+  src: url('../fonts/scratchies/Scratchies.ttf')  format('truetype')
+}
+
+.text-content {
+  font-family: 'tox';
+  font-size: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.first-letter{
+  font-family: 'scratchies';
+  font-size: 80;
+}
+
+.description-text p:nth-child(1) {
+  width: 100%;
+  
+  -webkit-animation: type 5s steps(40, end);
+  animation: type 5s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.description-text p:nth-child(2) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type2 5s steps(40, end);
+  animation: type2 5s steps(40, end);
+  -webkit-animation-delay: 5s;
+  animation-delay: 5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.description-text p:nth-child(3) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 5s steps(20, end);
+  animation: type3 5s steps(20, end);
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.description-text p:nth-child(4) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type4 5s steps(20, end);
+  animation: type4 5s steps(20, end);
+  -webkit-animation-delay: 15s;
+  animation-delay: 15s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes type {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes type {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes type2 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes type2 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes type3 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes type3 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes type4 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes type4 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// @keyframes blink {
+//   50% {
+//     border-color: transparent;
+//   }
+// }
+// @-webkit-keyframes blink {
+//   50% {
+//     border-color: tranparent;
+//   }
+// }
+
