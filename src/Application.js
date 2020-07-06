@@ -1,12 +1,11 @@
 import React from 'react';
 // import './App.css';
-import Timer from './components/Timer'
+import Description from './components/Description'
 
 function Application() {
   return (
     <div className="App">
-      <Timer>
-      </Timer>
+
     </div>
   );
 }

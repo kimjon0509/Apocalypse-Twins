@@ -19,8 +19,8 @@ export default function Timer(props) {
   // };
 
   return (
-    <div class="timerbar">
-        <span class="timer"></span>
+    <div className="timerbar">
+        <span className="timer"></span>
     </div>
   );
 }
