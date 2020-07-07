@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'scratchies';
+  src: url('../../fonts/scratchies/Scratchies.ttf')  format('truetype')
+}
+
+.main-title {
+  font-family: 'scratchies';
+  font-size: 80px;
+  -webkit-text-stroke: 0.5px whitesmoke;
+}
