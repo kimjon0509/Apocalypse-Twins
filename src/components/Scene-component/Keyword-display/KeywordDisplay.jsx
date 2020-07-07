@@ -13,9 +13,9 @@ export default function KeywordDisplay(props) {
   return (
     <div className='keyword-display'>
       <InputClear input={input} setInput={setInput}></InputClear>
-      <InputField input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} InputFieldBoxClass={InputFieldBoxClass} keyword={'hello'}></InputField>
-      <InputSubmit input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} keyword={'hello'}></InputSubmit>
-      <Rune input={input} setInput={setInput} keyword={'hello'}></Rune>
+      <InputField input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} InputFieldBoxClass={InputFieldBoxClass} keyword={props.keyword}></InputField>
+      <InputSubmit input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} transition={props.transition} keyword={props.keyword}></InputSubmit>
+      <Rune input={input} setInput={setInput} keyword={props.keyword}></Rune>
     </div>
   );
 }

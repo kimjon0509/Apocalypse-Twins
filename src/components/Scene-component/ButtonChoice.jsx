@@ -1,5 +1,5 @@
 import React from "react";
-import './ButtonNext.scss'
+import './ButtonChoice.scss'
 
 export default function ButtonChoice(props) {
   function handleClick1(e) {
@@ -16,7 +16,7 @@ export default function ButtonChoice(props) {
   }
 
   return (
-    <div>
+    <div className="choices">
     <a className='next' href="#" onClick={handleClick1}>
       {props.choice1}
     </a>

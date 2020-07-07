@@ -7,7 +7,7 @@ export default function InputSubmit(props) {
   function checkAnswer(e) {
 
     function decodeHtml(html) {
-      var txt = document.createElement("textarea");
+      let txt = document.createElement("textarea");
       txt.innerHTML = html;
       return txt.value;
     }
@@ -55,8 +55,9 @@ export default function InputSubmit(props) {
     }
     
     if (correctAnswer) {
-      console.log('correct');
-      props.setInputFieldBoxClass('input-field-box')
+      // console.log('correct');
+      // props.setInputFieldBoxClass('input-field-box')
+      props.transition('Choices');
     } else {
       console.log('incorrect');
       props.setInput([]);

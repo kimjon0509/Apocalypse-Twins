@@ -1,4 +1,7 @@
 .healthbar {
   display: flex;
-  justify-content: row;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
 }
