@@ -1,16 +1,23 @@
-@font-face {
-  font-family: 'scratchies';
-  src: url('../../fonts/scratchies/Scratchies.ttf')  format('truetype')
+.clear-input-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
-
-.main-page-button {
+.clear-input-field {
+  // color: #6c757d;
   background-color: transparent;
   background-image: none;
-  padding: 15px;
-  // font-family: 'scratchies';
-  font-size: 20px;
-  // background-color: #C2E6D2;
-  border-radius: 20px;
+  // border-color: #6c757d;
+  // display: inline-block;
+  // font-weight: 400;
+  // text-align: center;
+  // white-space: nowrap;
+  // vertical-align: middle;
+  // user-select: none;
+  // padding: .375rem .75rem;
+  // font-size: 1rem;
+  // line-height: 1.5;
+  // border-radius: .25rem;
 
   display: inline-block;
 	padding: 0.35em 1.2em;

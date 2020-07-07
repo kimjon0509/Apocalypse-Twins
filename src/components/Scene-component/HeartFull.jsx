@@ -1,5 +1,5 @@
 import React from "react"
-import heartFull from "../images/hud_heartFull.png"
+import heartFull from "../../images/hud_heartFull.png"
 
 export default function HeartFull(props) {
   return (
