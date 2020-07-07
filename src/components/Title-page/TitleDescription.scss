@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'tox';
+  src: url('../../fonts/tox_typewriter/Tox\ Typewriter.ttf')  format('truetype')
+}
+
+.main-page-description {
+  margin-bottom: 90px;
+  font-family: 'tox';
+  font-size: 30px;
+  color: white;
+  width: 80%;
+  word-wrap: break-word;
+}
