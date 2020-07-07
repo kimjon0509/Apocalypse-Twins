@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from "react";
 import './Description.scss'
 import $ from 'jquery'
+import Typist from 'react-typist';
 
 export default function Description(props) {
 
   function format(text) {
     return (
-      <>
+      <span>
         <span className='first-letter'>{text.charAt(0)}</span>
         {text.slice(1)}
-      </>
+      </span>
     )
   };
 
@@ -39,14 +40,18 @@ export default function Description(props) {
     })
     return splitTextArr.map((sentence, i) => {
       return (
-        // i === 0 ? <p className='text-content'>{format(sentence)}</p> : <p className='text-content'>{sentence}</p> 
-        <p className='text-content'>{sentence}</p> 
+        i === 0 ? <p className='text-content'>{format(sentence)}</p> : <p className='text-content'>{sentence}</p> 
+        // <p className='text-content'>{sentence}</p> 
       )
     })
   }
 
   return(
-    <div className='description-text'>{splitText(props.text, props.maxLen)}</div>
+    <div className='description-text'>
+      <Typist cursor={{show: false}}>
+        {splitText(props.text, props.maxLen)}
+      </Typist>
+    </div>
   )
 }
 
