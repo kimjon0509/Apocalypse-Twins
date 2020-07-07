@@ -11,17 +11,26 @@
 
 
 .text-content {
+  // padding-top: 15px;
+  width: 80%;
+  margin: 0 auto;
   font-family: 'tox';
-  font-size: 50px;
+  font-size: 35px;
   overflow: hidden;
   white-space: nowrap;
+  color: lightgrey;
+  -webkit-text-stroke: 1px black;
 }
 
 .first-letter{
   font-family: 'scratchies';
   font-size: 80;
+  color: lightgrey;
+  -webkit-text-stroke: 1.5px black;
 }
-
+.description-text p:nth-child(1) {
+  padding-top: 30px;
+}
 // .description-text p:nth-child(1) {
 //   width: 100%;
   
@@ -41,7 +50,7 @@
 //   animation-fill-mode: forwards;
 // }
 // .description-text p:nth-child(3) {
-//   width: 100%;
+//   widh: 100%;
 //   opacity: 0;
 //   -webkit-animation: type3 5s steps(20, end);
 //   animation: type3 5s steps(20, end);

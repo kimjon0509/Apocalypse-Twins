@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import "./HealthBar.scss"
 import HeartFull from "./HeartFull"
 import HeartEmpty from "./HeartEmpty"
+import GameOver from "../Scene/GameOver/GameOverScreen"
 
 export default function HealthBar(props) {
   const [health, setHealth] = useState(props.health)
@@ -16,12 +17,20 @@ export default function HealthBar(props) {
     }
   }
 
+  if (health < 1) {
+    return (
+      <div>
+        GAME OVER
+      </div>
+    )
+  }
+
   return (
     // buttons are used for testing health state
     <div className="healthbar">
-    {hearts}
-    <button onClick={() => setHealth(health - 1)}></button>
-    <button onClick={() => setHealth(health + 1)}></button>
+      {hearts}
+      {/* <button onClick={() => setHealth(health - 1)}></button>
+      <button onClick={() => setHealth(health + 1)}></button> */}
     </div>
   )
 }

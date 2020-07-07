@@ -17,6 +17,11 @@ export default function Timer(props) {
   //       progress(timeleft - 1, timetotal, $('.progressBar.red'));
   //   }
   // };
+  useEffect(() => {
+    setTimeout(() => {
+      props.transition('Choices')
+    }, 45000)
+  }, [])
 
   return (
     <div className="timerbar">

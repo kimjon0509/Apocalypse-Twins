@@ -19,11 +19,26 @@
 //   box-sizing: border-box;
 // }
 
+
 .timerbar { 
   height: 20px;
-  position: relative;
+  // position: absolute; 
+  // top: 0px;
   background: #f3efe6;
   overflow: hidden;
+  animation: 3s fadeIn;
+  animation-fill-mode: forwards;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  &.hide {
+    background: none;
+  }
 }
 
 .timer {

@@ -6,6 +6,6 @@ import InputField from '../components/Scene-component/Keyword-display/InputField
 import KeywordDisplay from '../components/Scene-component/Keyword-display/KeywordDisplay'
 
 storiesOf("KeywordDisplay", module)
-  .add("Runes", () => <Rune keyword={'hello'}></Rune>)
-  .add("Input Field", () => <InputField keyword={'hello'}></InputField>)
-  .add("Keyword Display", () => <KeywordDisplay></KeywordDisplay>)
+  // .add("Runes", () => <Rune keyword={'hello'}></Rune>)
+  // .add("Input Field", () => <InputField keyword={'hello'}></InputField>)
+  .add("Keyword Display", () => <KeywordDisplay keyword={'hello'}></KeywordDisplay>)

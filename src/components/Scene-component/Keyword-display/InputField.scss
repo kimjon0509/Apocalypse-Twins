@@ -7,28 +7,26 @@
 
 .input-field-box {
   margin: 0;
-
-  width:  100px;
-  height: 100px;
+  width:  80px;
+  height: 80px;
   border-bottom: 5px solid #8FCFAC;
-  padding: 10px;
-  margin: 20px;
-  font-size: 80px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 70px;
   text-align: center;
-}
-
-
-.input-field-box.incorrect{
-  border-bottom: 5px solid red;
-  animation: 2s shake;
-
-  @keyframes shake {
-    0% { transform: skewX(-15deg); }
-    5% { transform: skewX(15deg); }
-    10% { transform: skewX(-15deg); }
-    15% { transform: skewX(15deg); }
-    20% { transform: skewX(0deg); }
-    100% { transform: skewX(0deg); }  
+  &.incorrect{
+    border-bottom: 5px solid red;
+    animation: 2s shake;
+  
+    @keyframes shake {
+      0% { transform: skewX(-15deg); }
+      5% { transform: skewX(15deg); }
+      10% { transform: skewX(-15deg); }
+      15% { transform: skewX(15deg); }
+      20% { transform: skewX(0deg); }
+      100% { transform: skewX(0deg); }  
+    }
   }
 }
 

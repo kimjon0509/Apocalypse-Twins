@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'scratchies';
+  src: url('../../../fonts/scratchies/Scratchies.ttf')  format('truetype')
+}
+
+.gameover-text {
+  color: red;
+  font-family: 'scratchies';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gameover-description{
+  color: white;
+}
+.gameover-screen {
+  display:flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.seperator-gameover{
+  margin: 0 auto;
+  width: 60%
+}
