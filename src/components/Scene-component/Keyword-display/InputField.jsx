@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import '../keyword_display/InputField.scss'
+import './InputField.scss'
 
 
 export default function InputField(props) {

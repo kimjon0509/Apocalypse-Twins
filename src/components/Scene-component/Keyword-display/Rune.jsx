@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import '../keyword_display/Runes.scss'
+import './Runes.scss'
 export default function Rune(props) {
 // remove later
   const [shuffleWord, setShuffleWord] = useState([])
