@@ -5,3 +5,18 @@ body {
   background-size: 100% 100%;
   margin: 0px;
 }
+
+.scene-layout{
+  display: flex;
+  flex-direction: column;
+}
+
+.timer-dummy {
+  height: 20px;
+  // position: absolute; 
+  // top: 0px;
+  // background: #f3efe6;
+  overflow: hidden;
+}
+
+
