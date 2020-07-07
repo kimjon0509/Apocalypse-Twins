@@ -1,0 +1,12 @@
+.rune-collection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.rune-output{
+  font-size: 100px;
+  padding: 50px;
+  cursor: pointer;
+}
