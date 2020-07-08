@@ -18,9 +18,15 @@ export default function Timer(props) {
   //   }
   // };
   useEffect(() => {
-    setTimeout(() => {
-      props.transition('Choices')
-    }, 45000)
+    if (props.pass) {
+      setTimeout(() => {
+        props.sceneTransition('dead')
+      }, 45000)
+    } else {
+      setTimeout(() => {
+        props.puzzleToChoices('Choices');
+      }, 45000)
+    }
   }, [])
 
   return (

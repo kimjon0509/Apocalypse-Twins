@@ -14,7 +14,15 @@ export default function KeywordDisplay(props) {
     <div className='keyword-display'>
       <InputClear input={input} setInput={setInput}></InputClear>
       <InputField input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} InputFieldBoxClass={InputFieldBoxClass} keyword={props.keyword}></InputField>
-      <InputSubmit input={input} setInput={setInput} setInputFieldBoxClass={setInputFieldBoxClass} transition={props.transition} keyword={props.keyword}></InputSubmit>
+      <InputSubmit 
+      input={input}
+      setInput={setInput}
+      setInputFieldBoxClass={setInputFieldBoxClass}
+      puzzleToChoices={props.puzzleToChoices}
+      sceneTransition={props.sceneTransition}
+      pass={props.pass}
+      keyword={props.keyword}
+      ></InputSubmit>
       <Rune input={input} setInput={setInput} keyword={props.keyword}></Rune>
     </div>
   );
