@@ -1,27 +1,27 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
-import ButtonChoice from '../../Scene-component/ButtonChoice';
-import Description from '../../Scene-component/Description';
-import Timer from '../../Scene-component/Timer';
-import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
-import HealthBar from '../../Scene-component/HealthBar';
 
-const classNames = require('classnames');
+import BusFirst from './BusFirst';
+import BusSecond from './BusSecond';
+import BusThird from './BusThird';
+import BusFourth from './BusFourth';
+import BusFifth from './BusFifth';
+import BusSixth from './BusSixth';
+import BusSeventh from './BusSeventh';
+import BusEighth from './BusEighth';
+import BusNinth from './BusNinth';
+import BusTenth from "./BusTenth";
+import BusEleventh from "./BusEleventh";
+import BusTwelfth from "./BusTwelfth";
+import BusThirteenth from "./BusThirteen";
+import BusFourteenth from "./BusFourteenth";
 
-export default function Bus(props) {
-  const [show, setShow] = useState(false)
-  const sceneDescription = "You decide the best course of action is to take the bus. You tell Denise you’re leaving, grab your supplies, and head out. Boarding the bus, you quickly realize there is no key in the ignition. Luckily, you have the tools to hotwire the bus. That might take a while though. You decide to use the power to sense if there’s a key hidden somewhere close...";
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
-  // setTimeout(() => {
-  //   console.log('check 123')
-  //   setShow(true);
-  // }, 40000)
+export default function BusStart(props) {
 
-  function usePuzzleToChoices(initial) {
-    const [history, setHistory] = useState([initial]);
+  function useScene(initial) {
+    const [scene, setScene] = useState([initial]);
   
     function transition(changeMode, replace = false) {
-      setHistory(prev => {
+      setScene(prev => {
         if (replace) {
           return [changeMode, ...prev.slice(1)];
         } else {
@@ -30,43 +30,44 @@ export default function Bus(props) {
       });
     }
   
-    function back() {
-      setHistory(prev => {
-        if (prev.length > 1) {
-          return prev.slice(1);
-        } else {
-          return prev;
-        }
-      });
-    }
-  
-    return {mode: history[0], transition, back };
+    return {mode: scene[0], transition };
   }
-  const PUZZLE = 'Puzzle'
-  const CHOICES = 'Choices'
-  const styleShow = show ? {} : {visibility: 'hidden'}
-  const { mode, transition } = usePuzzleToChoices('Puzzle')
-  console.log(mode)
+
+  const {mode, transition} = useScene('first')
+
+  const START = 'first';
+  const SECOND = 'second';
+  const THIRD = 'third';
+  const FOURTH = 'fourth';
+  const FIFTH = 'fifth';
+  const SIXTH = 'sixth';
+  const SEVENTH = 'seventh';
+  const EIGHTH = 'eighth';
+  const NINTH = 'ninth';
+  const TENTH = 'tenth';
+  const ELEVENTH = 'eleventh';
+  const TWELFTH = 'twelfth';
+  const THIRTEENTH = 'thirteenth';
+  const FOURTEENTH = 'fourteenth';
+
   return (
     <div className='scene-layout'>
-      {show ? <Timer transition={transition}></Timer> : <div className='timer-dummy'></div>}
-      <div style={styleShow} className='show-animation'>
-        <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
-        </div>
-      </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
-      {mode === PUZZLE &&
-        <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'key'} style={styleShow} transition={transition} ></KeywordDisplay>}
-        </div>
-      }
-      {mode === CHOICES && 
-        <>
-        <ButtonChoice choice={'Hotwire the bus'} scene={'second'} transition={transition}></ButtonChoice>
-        <ButtonChoice choice={'Use key'} scene={'third'} transition={transition}></ButtonChoice>
-        </>
-      }
+      {mode === START && <BusFirst transition={transition}></BusFirst>}
+
+      {mode === SECOND && <BusSecond transition={transition}></BusSecond>}
+      {mode === THIRD && <BusThird transition={transition}></BusThird>} 
+
+      {mode === FOURTH && <BusFourth transition={transition}></BusFourth>}
+      {mode === FIFTH && <BusFifth transition={transition}></BusFifth>}
+      {mode === SIXTH && <BusSixth transition={transition}></BusSixth>}
+      {mode === SEVENTH && <BusSeventh transition={transition}></BusSeventh>}
+      {mode === EIGHTH && <BusEighth transition={transition}></BusEighth>}
+      {mode === NINTH && <BusNinth transition={transition}></BusNinth>}
+      {mode === TENTH && <BusTenth transition={transition}></BusTenth>}
+      {mode === ELEVENTH && <BusEleventh transition={transition}></BusEleventh>}
+      {mode === TWELFTH && <BusTwelfth transition={transition}></BusTwelfth>}
+      {mode === THIRTEENTH && <BusThirteenth transition={props.transition}></BusThirteenth>}
+      {mode === FOURTEENTH && <BusFourteenth transition={props.transition}></BusFourteenth>}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import './Application.scss'
 import TitlePage from './components/Title-page/TitlePage'
 //import Subway from './components/Scene/Subway/SubwayStart'
-import Bus from './components/Scene/Bus/BusStart'
+import BusStart from './components/Scene/Bus/BusStart'
 //import Dock from './components/Scene/Dock/DockStart'
 
 // import BackgroundImage from "./images/BackgroundImage.jpg"
@@ -35,8 +35,8 @@ function Application() {
 
   return (
     <main className="App">
-      {mode === SUBWAY && <Subway></Subway>}
-      {/* {false && <Bus mode={mode }transition={transition}></Bus>}
+     { mode === Bus && <BusStart></BusStart>}
+      { /*{mode === SUBWAY && <Subway></Subway>}
       {false &&<Dock mode={mode }transition={transition}></Dock>} */}
     </main>
   );
