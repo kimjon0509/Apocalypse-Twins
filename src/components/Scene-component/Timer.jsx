@@ -20,16 +20,15 @@ export default function Timer(props) {
   // };
   useEffect(() => {
     if (timeout) {
-      clearTimeout(timeout)
+      clearTimeout(timeout);
     }
     if (props.pass) {
       timeout = setTimeout(() => {
-        props.sceneTransition(props.scene)
+        props.sceneTransition('dead')
       }, 45000)
     } else if (props.scene) {
       timeout = setTimeout(() => {
-        props.sceneTransition(props.scene)
-        props.removeHeart()
+        props.sceneTransition('eleventh')
       }, 45000)
     } else {
       timeout = setTimeout(() => {

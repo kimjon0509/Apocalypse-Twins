@@ -5,7 +5,7 @@ import $ from 'jquery'
 export default function ButtonNext(props) {
 
   return (
-    <a className='next' href="#" onClick={() => {console.log('clicked')}}>
+    <a className='next' onClick={() => {props.sceneTransition(props.scene)}}>
       Next
     </a>
   )

@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 
 import './Application.scss'
 import TitlePage from './components/Title-page/TitlePage'
-import Subway from './components/Scene/Subway/SubwayStart'
-// import Bus from './components/Scene/Bus/BusStart'
-// import Dock from './components/Scene/Dock/DockStart'
+//import Subway from './components/Scene/Subway/SubwayStart'
+import BusStart from './components/Scene/Bus/BusStart'
+//import Dock from './components/Scene/Dock/DockStart'
 
 import HeartEmpty from './components/Scene-component/HeartEmpty'
 import HeartFull from './components/Scene-component/HeartFull'
@@ -50,16 +50,22 @@ function Application() {
     return {mode: transport[0], transition };
   }
 
-  const {mode, transition} = useTransport('Subway')
+  const {mode, transition} = useTransport('Bus')
 
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
-  const Bus = 'Bus';
-  const Dock = 'Dock';
+  const BUS = 'Bus';
+  const DOCK = 'Dock';
 
   return (
     <main className="App">
-      {mode === SUBWAY && 
+     { mode === BUS && 
+     <BusStart
+      heart={heart}
+      addHeart={addHeart}
+      removeHeart={removeHeart}
+     ></BusStart>}
+      { /*{mode === SUBWAY && 
         <Subway 
           heart={heart}
           addHeart={addHeart}
