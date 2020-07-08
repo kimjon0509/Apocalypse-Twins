@@ -54,7 +54,10 @@ export default function SubwayFirst(props) {
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
+          {<HealthBar
+            style={styleShow}
+            heart={props.heart}
+          ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
@@ -73,17 +76,13 @@ export default function SubwayFirst(props) {
       }
       {mode === CHOICES && 
         <>
-        <>
-        <ButtonChoice
-
-        correctPath={buttonClass}
-        
-        choice={'Walk'}
-        scene={'third'}
-        sceneTransition={props.sceneTransition}
-        ></ButtonChoice>
-        </>
-        <ButtonChoice choice={'Train'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice
+          correctPath={buttonClass}
+          choice={'Walk'}
+          scene={'third'}
+          sceneTransition={props.sceneTransition}
+          ></ButtonChoice>
+          <ButtonChoice choice={'Train'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

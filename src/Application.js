@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 import './Application.scss'
 import TitlePage from './components/Title-page/TitlePage'
-//import Subway from './components/Scene/Subway/SubwayStart'
+import Subway from './components/Scene/Subway/SubwayStart'
 import BusStart from './components/Scene/Bus/BusStart'
 //import Dock from './components/Scene/Dock/DockStart'
 
@@ -50,7 +50,7 @@ function Application() {
     return {mode: transport[0], transition };
   }
 
-  const {mode, transition} = useTransport('Bus')
+  const {mode, transition} = useTransport('Subway')
 
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
@@ -65,14 +65,12 @@ function Application() {
       addHeart={addHeart}
       removeHeart={removeHeart}
      ></BusStart>}
-      { /*{mode === SUBWAY && 
+      {mode === SUBWAY && 
         <Subway 
           heart={heart}
           addHeart={addHeart}
           removeHeart={removeHeart}
         ></Subway>}
-      {/* {false && <Bus mode={mode }transition={transition}></Bus>}
-      {false &&<Dock mode={mode }transition={transition}></Dock>} */}
     </main>
   );
 }

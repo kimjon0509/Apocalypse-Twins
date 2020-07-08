@@ -11,7 +11,7 @@ export default function BusFourth(props) {
 
   return (
     <div>
-      <GameOver text={testDesc} maxLen={60}></GameOver>
+      <GameOver text={sceneDescription} maxLen={60}></GameOver>
     </div>
   )
 }
