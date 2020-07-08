@@ -1,9 +1,30 @@
 import React, {useEffect, useState} from "react";
 
-import SubwayFirst from './SubwayFirst'
+import SubwayFirst from './SubwayFirst';
+import SubwaySecond from './SubwaySecond';
+import SubwayThird from './SubwayThird';
 
 export default function SubwayStart(props) {
-  const START = 'Subway';
+
+  function useScene(initial) {
+    const [scene, setScene] = useState([initial]);
+  
+    function transition(changeMode, replace = false) {
+      setScene(prev => {
+        if (replace) {
+          return [changeMode, ...prev.slice(1)];
+        } else {
+          return [changeMode, ...prev];
+        }
+      });
+    }
+  
+    return {mode: scene[0], transition };
+  }
+
+  const {mode, transition} = useScene('first')
+
+  const START = 'first';
   const SECOND = 'second';
   const THIRD = 'third';
   const FOURTH = 'fourth';
@@ -19,10 +40,11 @@ export default function SubwayStart(props) {
 
   return (
     <div className='scene-layout'>
-      {props.mode === START && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === SECOND && <SubwayFirst transition={props.transition}></SubwayFirst>}
+      {mode === START && <SubwayFirst transition={transition}></SubwayFirst>}
 
-      {props.mode === THIRD && <SubwayFirst transition={props.transition}></SubwayFirst>}
+      {mode === SECOND && <SubwaySecond transition={transition}></SubwaySecond>}
+      {mode === THIRD && <SubwayThird transition={transition}></SubwayThird>}
+
       {props.mode === FOURTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
       {props.mode === FIFTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
       {props.mode === SIXTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
