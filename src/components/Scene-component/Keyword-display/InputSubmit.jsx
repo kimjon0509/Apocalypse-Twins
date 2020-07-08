@@ -57,14 +57,20 @@ export default function InputSubmit(props) {
     if (correctAnswer) {
       // console.log('correct');
       // props.setInputFieldBoxClass('input-field-box')
-      props.transition('Choices');
+      if (props.pass) {
+        console.log('here', props.pass)
+        props.sceneTransition('sixth')
+      } else{
+        props.puzzleToChoices('Choices');
+      }
+
     } else {
-      console.log('incorrect');
-      props.setInput([]);
-      props.setInputFieldBoxClass('input-field-box incorrect')
-      setTimeout(() => {props.setInputFieldBoxClass('input-field-box')}, 500)
+        props.setInput([]);
+        props.setInputFieldBoxClass('input-field-box incorrect')
+        setTimeout(() => {props.setInputFieldBoxClass('input-field-box')}, 500)
+      }
     }
-  }
+  
 
   return (
     <div className='submit-input-div'>

@@ -8,9 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayFirst(props) {
+export default function SubwayFifth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "Leaving the station behind, the tunnel is cold, dark, and quiet. After walking for some time, you stop short as you hear a groan from the darkness ahead. Unsure of its origin, you both extend your awareness, trying to sense what danger might lurk there…";
+  const sceneDescription = "";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -46,23 +46,22 @@ export default function SubwayFirst(props) {
 
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer 
+      transition={transition}
+      pass={'pass'}
+      sceneTransition={props.sceneTransition}
+      ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar health={3} style={styleShow} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55} pass={'pass'}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'saviour'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'saviour'} style={styleShow} 
+          pass={'pass'} sceneTransition={props.sceneTransition}></KeywordDisplay>}
         </div>
-      }
-      {mode === CHOICES && 
-        <>
-        <ButtonChoice choice={"approach"} scene={'sixth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'avoid'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        </>
       }
     </div>
   )

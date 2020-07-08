@@ -5,7 +5,7 @@ export default function ButtonChoice(props) {
 
   return (
     <div className="choices">
-      <p className='next' onClick={() => {props.transition(props.scene)}}>
+      <p className='next' onClick={() => {props.sceneTransition(props.scene)}}>
         {props.choice}
       </p>
     </div>

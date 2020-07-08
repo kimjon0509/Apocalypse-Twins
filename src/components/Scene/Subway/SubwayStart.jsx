@@ -3,6 +3,9 @@ import React, {useEffect, useState} from "react";
 import SubwayFirst from './SubwayFirst';
 import SubwaySecond from './SubwaySecond';
 import SubwayThird from './SubwayThird';
+import SubwayFourth from './SubwayFourth';
+import SubwayFifth from './SubwayFifth';
+import GameOver from '../GameOver/GameOverScreen'
 
 export default function SubwayStart(props) {
 
@@ -34,26 +37,23 @@ export default function SubwayStart(props) {
   const EIGHTH = 'eighth';
   const NINTH = 'ninth';
   const TENTH = 'tenth';
-  const ELEVENTH = 'eleventh';
-  const TWELFTH = 'twelfth';
-  const thirtieth = 'thirtieth';
+  const DEAD = 'dead';
 
   return (
     <div className='scene-layout'>
-      {mode === START && <SubwayFirst transition={transition}></SubwayFirst>}
+      {mode === START && <SubwayFirst sceneTransition={transition}></SubwayFirst>}
 
-      {mode === SECOND && <SubwaySecond transition={transition}></SubwaySecond>}
-      {mode === THIRD && <SubwayThird transition={transition}></SubwayThird>}
+      {mode === SECOND && <SubwaySecond sceneTransition={transition}></SubwaySecond>}
+      {mode === THIRD && <SubwayThird sceneTransition={transition}></SubwayThird>}
+      {mode === DEAD && <GameOver text="You have died. Try another path next time." maxLen={60} ></GameOver>}
 
-      {props.mode === FOURTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === FIFTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === SIXTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
+      {mode === FOURTH && <SubwayFourth sceneTransition={transition}></SubwayFourth>}
+      {mode === FIFTH && <SubwayFifth sceneTransition={transition}></SubwayFifth>}
+      {/* {props.mode === SIXTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
       {props.mode === SEVENTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
+      {props.mode === EIGHTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
       {props.mode === NINTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === TENTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === ELEVENTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === TWELFTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === thirtieth && <SubwayFirst transition={props.transition}></SubwayFirst>}
+      {props.mode === TENTH && <SubwayFirst transition={props.transition}></SubwayFirst>} */}
     </div>
   )
 }

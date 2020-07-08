@@ -8,7 +8,7 @@ export default function GameOver(props) {
       <h1 className="gameover-text">GAME OVER</h1>
       <div className='seperator-gameover'>
         <p className="gameover-description">
-          <Description text={props.text} maxLen={50}></Description>
+          <Description text={props.text} maxLen={50} dead={'dead'}></Description>
         </p>
       </div>
     </div>

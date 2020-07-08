@@ -10,7 +10,7 @@ const classNames = require('classnames');
 
 export default function SubwayFirst(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "Leaving the station behind, the tunnel is cold, dark, and quiet. After walking for some time, you stop short as you hear a groan from the darkness ahead. Unsure of its origin, you both extend your awareness, trying to sense what danger might lurk there…";
+  const sceneDescription = "";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -60,7 +60,7 @@ export default function SubwayFirst(props) {
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={"approach"} scene={'sixth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={"approach"} scene={'fourth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         <ButtonChoice choice={'avoid'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
