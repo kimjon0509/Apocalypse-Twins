@@ -45,23 +45,23 @@ export default function BusNinth(props) {
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
-      {show ? <Timer transition={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} transition={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'quick'} style={styleShow} transition={transition} sceneTransition={props.sceneTransition}></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Wait and see what the car does (no gas)'} scene={'fourteenth'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Attack'} scene={'eleventh'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Hide'} scene={'twelfth'} transition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={'Wait and see what the car does (no gas)'} scene={'fourteenth'} sceneTransition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.transition}></ButtonChoice>
         </>
       }
     </div>

@@ -54,12 +54,12 @@ function Application() {
 
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
-  const Bus = 'Bus';
-  const Dock = 'Dock';
+  const BUS = 'Bus';
+  const DOCK = 'Dock';
 
   return (
     <main className="App">
-     { mode === Bus && 
+     { mode === BUS && 
      <BusStart
       heart={heart}
       addHeart={addHeart}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
@@ -16,7 +16,7 @@ export default function BusFirst(props) {
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
-  
+
     function transition(changeMode, replace = false) {
       setHistory(prev => {
         if (replace) {
@@ -26,7 +26,7 @@ export default function BusFirst(props) {
         }
       });
     }
-  
+
     function back() {
       setHistory(prev => {
         if (prev.length > 1) {
@@ -36,31 +36,31 @@ export default function BusFirst(props) {
         }
       });
     }
-  
-    return {mode: history[0], transition, back };
+
+    return { mode: history[0], transition, back };
   }
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
-  const styleShow = show ? {} : {visibility: 'hidden'}
+  const styleShow = show ? {} : { visibility: 'hidden' }
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
       {show ? <Timer sceneTransition={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={transition} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
       }
-      {mode === CHOICES && 
+      {mode === CHOICES &&
         <>
-        <ButtonChoice choice={'Take a nearby side road, and continue driving(gas)'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Stop the bus'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice choice={'Take a nearby side road, and continue driving(gas)'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice choice={'Stop the bus'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

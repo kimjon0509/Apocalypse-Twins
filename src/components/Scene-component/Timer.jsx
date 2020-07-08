@@ -3,6 +3,7 @@ import './Timer.scss'
 import $ from 'jquery'
 
 // const classNames = require('classnames');
+let timeout
 
 export default function Timer(props) {
 
@@ -18,16 +19,19 @@ export default function Timer(props) {
   //   }
   // };
   useEffect(() => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
     if (props.pass) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         props.sceneTransition('dead')
       }, 45000)
     } else if (props.scene) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         props.sceneTransition('eleventh')
       }, 45000)
     } else {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         props.puzzleToChoices('Choices');
       }, 45000)
     }

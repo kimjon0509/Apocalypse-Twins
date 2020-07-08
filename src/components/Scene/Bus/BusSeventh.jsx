@@ -49,13 +49,13 @@ export default function BusSeventh(props) {
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'calm'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={props.sceneTransition} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 

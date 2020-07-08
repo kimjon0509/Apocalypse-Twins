@@ -52,20 +52,20 @@ export default function BusStart(props) {
 
   return (
     <div className='scene-layout'>
-      {mode === START && <BusFirst sceneTransition={transition}></BusFirst>}
-      {mode === SECOND && <BusSecond sceneTransition={transition}></BusSecond>}
-      {mode === THIRD && <BusThird sceneTransition={transition}></BusThird>} 
-      {mode === FOURTH && <BusFourth sceneTransition={transition}></BusFourth>}
-      {mode === FIFTH && <BusFifth sceneTransition={transition}></BusFifth>}
-      {mode === SIXTH && <BusSixth sceneTransition={transition}></BusSixth>}
-      {mode === SEVENTH && <BusSeventh sceneTransition={transition}></BusSeventh>}
-      {mode === EIGHTH && <BusEighth sceneTransition={transition}></BusEighth>}
-      {mode === NINTH && <BusNinth sceneTransition={transition}></BusNinth>}
-      {mode === TENTH && <BusTenth sceneTransition={transition}></BusTenth>}
-      {mode === ELEVENTH && <BusEleventh sceneTransition={transition}></BusEleventh>}
-      {mode === TWELFTH && <BusTwelfth sceneTransition={transition}></BusTwelfth>}
-      {mode === THIRTEENTH && <BusThirteenth sceneTransition={transition}></BusThirteenth>}
-      {mode === FOURTEENTH && <BusFourteenth sceneTransition={transition}></BusFourteenth>}
+      {mode === START && <BusFirst heart={props.heart} sceneTransition={transition}></BusFirst>}
+      {mode === SECOND && <BusSecond heart={props.heart} sceneTransition={transition}></BusSecond>}
+      {mode === THIRD && <BusThird heart={props.heart} sceneTransition={transition}></BusThird>} 
+      {mode === FOURTH && <BusFourth heart={props.heart} sceneTransition={transition}></BusFourth>}
+      {mode === FIFTH && <BusFifth heart={props.heart} sceneTransition={transition}></BusFifth>}
+      {mode === SIXTH && <BusSixth heart={props.heart} addHeart={props.addHeart} sceneTransition={transition}></BusSixth>}
+      {mode === SEVENTH && <BusSeventh heart={props.heart} sceneTransition={transition}></BusSeventh>}
+      {mode === EIGHTH && <BusEighth heart={props.heart} sceneTransition={transition}></BusEighth>}
+      {mode === NINTH && <BusNinth heart={props.heart} sceneTransition={transition}></BusNinth>}
+      {mode === TENTH && <BusTenth heart={props.heart} sceneTransition={transition}></BusTenth>}
+      {mode === ELEVENTH && <BusEleventh heart={props.heart} sceneTransition={transition}></BusEleventh>}
+      {mode === TWELFTH && <BusTwelfth heart={props.heart} sceneTransition={transition}></BusTwelfth>}
+      {mode === THIRTEENTH && <BusThirteenth heart={props.heart} sceneTransition={transition}></BusThirteenth>}
+      {mode === FOURTEENTH && <BusFourteenth heart={props.heart} sceneTransition={transition}></BusFourteenth>}
     </div>
   )
 }

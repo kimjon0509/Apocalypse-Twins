@@ -27,17 +27,9 @@ export default function BusNinth(props) {
       });
     }
   
-    function back() {
-      setHistory(prev => {
-        if (prev.length > 1) {
-          return prev.slice(1);
-        } else {
-          return prev;
-        }
-      });
-    }
+    
   
-    return {mode: history[0], transition, back };
+    return {mode: history[0], transition};
   }
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
@@ -45,23 +37,23 @@ export default function BusNinth(props) {
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzletoChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzletoChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.sceneTransition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Wait and see what the car does'} scene={'tenth'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Attack'} scene={'eleventh'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Hide'} scene={'twelfth'} transition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={'Wait and see what the car does'} scene={'tenth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>
