@@ -36,7 +36,7 @@ function Application() {
     return {mode: scene[0], transition, back };
   }
 
-  const {mode, transition} = useScene('TitlePage')
+  const {mode, transition} = useScene('Subway')
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
   const Bus = 'Bus';
@@ -44,7 +44,7 @@ function Application() {
 
   return (
     <main className="App">
-      {<Subway mode={mode }transition={transition}></Subway>}
+      {mode === SUBWAY && <Subway mode={mode} transition={transition}></Subway>}
       {/* {false && <Bus mode={mode }transition={transition}></Bus>}
       {false &&<Dock mode={mode }transition={transition}></Dock>} */}
     </main>
