@@ -39,6 +39,12 @@ export default function SubwayFirst(props) {
   
     return {mode: history[0], transition, back };
   }
+  // Show correct path when user gets the answer correct
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
@@ -59,12 +65,24 @@ export default function SubwayFirst(props) {
             style={styleShow}
             puzzleToChoices={transition}
             sceneTransition={props.sceneTransition}
+            
+            setPath={setPath}
+
             ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Walk'} scene={'third'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <>
+        <ButtonChoice
+
+        correctPath={buttonClass}
+        
+        choice={'Walk'}
+        scene={'third'}
+        sceneTransition={props.sceneTransition}
+        ></ButtonChoice>
+        </>
         <ButtonChoice choice={'Train'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }

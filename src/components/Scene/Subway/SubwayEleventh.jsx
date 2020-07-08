@@ -10,7 +10,7 @@ const classNames = require('classnames');
 
 export default function SubwayFourth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "Opening the door, you see a metal staircase winding tightly upward. You climb the steps, your footsteps echoing lightly. Every few seconds you glance down through the metal links to make sure you’re not being followed. At the top, you reach another door. Opening it a crack, a fresh breeze washes over you. You can see the hospital like a beacon above the rooftops a short distance from here. You made it.";
+  const sceneDescription = "With unnatural focus you slip the bars out from the other side of the door and float them gently to the ground. Pushing the door open you feel a clean, cool breeze touch your face. You step out into the empty street, leaving the station and its dangers behind. You can see the hospital like a beacon above the rooftops a short distance from here. You made it.";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -48,7 +48,7 @@ export default function SubwayFourth(props) {
     <div className='scene-layout'>
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
