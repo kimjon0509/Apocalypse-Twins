@@ -45,7 +45,7 @@ export default function BusFirst(props) {
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
-      {show ? <Timer transition={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer sceneTransition={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar health={3} style={styleShow} ></HealthBar>}
@@ -54,13 +54,13 @@ export default function BusFirst(props) {
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'calm'} style={styleShow} transition={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Take a nearby side road, and continue driving(gas)'} scene={'eighth'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Stop the bus'} scene={'ninth'} transition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={'Take a nearby side road, and continue driving(gas)'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Stop the bus'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

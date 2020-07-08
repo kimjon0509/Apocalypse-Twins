@@ -45,7 +45,7 @@ export default function BusNinth(props) {
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
-      {show ? <Timer transition={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer puzzletoChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar health={3} style={styleShow} ></HealthBar>}
@@ -54,7 +54,7 @@ export default function BusNinth(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} transition={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzletoChoices={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 

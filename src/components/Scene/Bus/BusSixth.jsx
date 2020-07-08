@@ -14,7 +14,7 @@ export default function BusSixth(props) {
   return (
     <div className='scene-layout'>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
-      <ButtonNext scene={"fifth"} transition={props.transition}></ButtonNext>
+      <ButtonNext scene={"fifth"} sceneTransition={props.sceneTransition}></ButtonNext>
     </div>
   )
 }
