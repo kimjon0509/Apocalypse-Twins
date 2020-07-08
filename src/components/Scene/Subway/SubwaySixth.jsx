@@ -10,7 +10,7 @@ const classNames = require('classnames');
 
 export default function SubwayFirst(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "Not wanting to risk the unknown, you increase your speed. Who would be down here, alive, anyway? As the train passes over the figure, you hear a brief scream and feel a sudden thud before all goes quiet again…";
+  const sceneDescription = "Lifting the man between you, you get him inside and pull yourselves in just as your psychic shroud fails. The bell chimes and the doors close a second before the zombies hurl themselves into the train. They slam against the windows, their rotting faces pressed against the glass. You rush to the driver’s compartment and hit the throttle. The zombies fall away as you pick up speed and continue into the tunnel.";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -48,7 +48,7 @@ export default function SubwayFirst(props) {
     <div className='scene-layout'>
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>

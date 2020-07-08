@@ -8,8 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayEighth(props) {
-  const sceneDescription = "After hours of walking, you finally reach the station. You see a wide set of stairs leading up and out. A little further ahead in the tunnel, a dim red light glows above a maintenance door. Which is the safest path?";
+export default function DeadOne(props) {
+  const [show, setShow] = useState(false)
+  const sceneDescription = "You hold out as long as you can, but lifting the man and trying to shroud your presence at the same time is too much. The pack catches your scent and they’re on you before you can get inside the train and close the doors. You try to haul yourself in, but it’s no good. The zombies pull you back and enjoy a fine meal of three warm bodies...";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -25,52 +26,24 @@ export default function SubwayEighth(props) {
         }
       });
     }
-  
-    function back() {
-      setHistory(prev => {
-        if (prev.length > 1) {
-          return prev.slice(1);
-        } else {
-          return prev;
-        }
-      });
-    }
-  
-    return {mode: history[0], transition, back };
+    return {mode: history[0], transition};
   }
-  const [show, setShow] = useState(false)
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
-  const { mode, transition } = usePuzzleToChoices('Puzzle')
+  const { mode, transition } = usePuzzleToChoices('Choices')
 
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
-      {mode === PUZZLE &&
-        <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay
-          keyword={'exit'}
-          style={styleShow} 
-          puzzleToChoices={transition} 
-          ></KeywordDisplay>}
-        </div>
-      }
       {mode === CHOICES && 
         <>
-          <ButtonChoice
-          choice={"Stairs"}
-          scene={'ninth'}
-          sceneTransition={props.sceneTransition}
-          ></ButtonChoice>
-          
-          <ButtonChoice choice={'Door'} scene={'tenth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={"Next"} scene={'dead'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

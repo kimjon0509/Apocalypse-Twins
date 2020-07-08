@@ -17,6 +17,10 @@
     background-color: #FFFFFF;
     
 	}
+	&.correct-path{
+		border: 0.1em solid red;
+		background: red;
+	}
 }
 @media all and (max-width:30em) {
 	.next {
