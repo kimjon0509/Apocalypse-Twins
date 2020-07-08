@@ -8,9 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayFirst(props) {
+export default function SubwayFourth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "";
+  const sceneDescription = "Not wanting to risk the unknown, you increase your speed. Who would be down here, alive, anyway? As the train passes over the figure, you hear a brief scream and feel a sudden thud before all goes quiet again…";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -42,26 +42,19 @@ export default function SubwayFirst(props) {
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
-  const { mode, transition } = usePuzzleToChoices('Puzzle')
+  const { mode, transition } = usePuzzleToChoices('Choices')
 
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar health={3} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
-      {mode === PUZZLE &&
-        <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'saviour'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
-        </div>
-      }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={"approach"} scene={'fourth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'avoid'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={"Next"} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

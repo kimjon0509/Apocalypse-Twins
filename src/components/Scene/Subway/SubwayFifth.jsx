@@ -60,7 +60,7 @@ export default function SubwayFifth(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay keyword={'saviour'} style={styleShow} 
-          pass={'pass'} sceneTransition={props.sceneTransition}></KeywordDisplay>}
+          pass={'pass'} scene={'sixth'}sceneTransition={props.sceneTransition}></KeywordDisplay>}
         </div>
       }
     </div>
