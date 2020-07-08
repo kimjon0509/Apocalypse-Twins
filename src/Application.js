@@ -35,9 +35,9 @@ function Application() {
 
   return (
     <main className="App">
-      {mode === SUBWAY && <Subway></Subway>}
-      {/* {false && <Bus mode={mode }transition={transition}></Bus>}
-      {false &&<Dock mode={mode }transition={transition}></Dock>} */}
+      {/* {mode === SUBWAY && <Subway></Subway>} */}
+      {/* {false && <Bus mode={mode }transition={transition}></Bus> */}
+      {false &&<Dock mode={mode }transition={transition}></Dock>}
     </main>
   );
 }

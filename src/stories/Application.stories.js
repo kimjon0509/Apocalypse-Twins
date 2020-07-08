@@ -4,3 +4,4 @@ import Application from '../Application';
 
 storiesOf("Applicaton", module)
   .add("Start to subway", () => <Application></Application>)
+  .add("Start to docks", () => <Application></Application>)
