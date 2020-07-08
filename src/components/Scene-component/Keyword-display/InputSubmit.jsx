@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+
 import './InputSubmit.scss'
 const classNames = require('classnames');
 
@@ -59,17 +60,17 @@ export default function InputSubmit(props) {
       // props.setInputFieldBoxClass('input-field-box')
       if (props.pass) {
         console.log('here', props.pass)
-        props.sceneTransition('sixth')
+        props.sceneTransition(props.scene)
       } else{
         props.puzzleToChoices('Choices');
       }
 
     } else {
-        props.setInput([]);
-        props.setInputFieldBoxClass('input-field-box incorrect')
-        setTimeout(() => {props.setInputFieldBoxClass('input-field-box')}, 500)
-      }
+      props.setInput([]);
+      props.setInputFieldBoxClass('input-field-box incorrect')
+      setTimeout(() => {props.setInputFieldBoxClass('input-field-box')}, 500)
     }
+  }
   
 
   return (
