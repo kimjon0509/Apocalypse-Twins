@@ -61,7 +61,12 @@ export default function Bus(props) {
           {<KeywordDisplay keyword={'key'} style={styleShow} transition={transition} ></KeywordDisplay>}
         </div>
       }
-      {mode === CHOICES && <ButtonChoice choice1={'Hotwire the bus'} choice2={'Use key'} ></ButtonChoice>}
+      {mode === CHOICES && 
+        <>
+        <ButtonChoice choice={'Hotwire the bus'} scene={'second'} transition={transition}></ButtonChoice>
+        <ButtonChoice choice={'Use key'} scene={'third'} transition={transition}></ButtonChoice>
+        </>
+      }
     </div>
   )
 }

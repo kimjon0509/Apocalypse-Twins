@@ -36,7 +36,7 @@ function Application() {
     return {mode: scene[0], transition, back };
   }
 
-  const {mode, transition} = useScene('Subway')
+  const {mode, transition} = useScene('Bus')
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
   const Bus = 'Bus';
