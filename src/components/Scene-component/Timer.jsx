@@ -3,7 +3,7 @@ import './Timer.scss'
 import $ from 'jquery'
 
 // const classNames = require('classnames');
-let timeout
+let timeout;
 
 export default function Timer(props) {
 

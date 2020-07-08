@@ -2,12 +2,20 @@ import React from "react";
 import './ButtonChoice.scss'
 
 export default function ButtonChoice(props) {
+  let classname;
+
+  if (props.correctPath) {
+    classname = 'next ' + props.correctPath;
+    console.log(classname)
+  } else {
+    classname = 'next';
+  }
 
   return (
-    <div className="choices">
-      <p className='next' onClick={() => {props.sceneTransition(props.scene)}}>
+    <div className='choices'>
+      <div className={classname} onClick={() => {props.sceneTransition(props.scene)}}>
         {props.choice}
-      </p>
+      </div>
     </div>
   )
 }

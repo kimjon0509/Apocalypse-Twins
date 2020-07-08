@@ -59,9 +59,10 @@ export default function InputSubmit(props) {
       // console.log('correct');
       // props.setInputFieldBoxClass('input-field-box')
       if (props.pass) {
-        console.log('here', props.pass)
+        console.log('here', props.scene)
         props.sceneTransition(props.scene)
       } else{
+        props.setPath(true)
         props.puzzleToChoices('Choices');
       }
 

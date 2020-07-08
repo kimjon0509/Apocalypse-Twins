@@ -49,7 +49,7 @@ export default function SubwaySeventh(props) {
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
@@ -60,7 +60,7 @@ export default function SubwaySeventh(props) {
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={"Elevator"} scene={'dead'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={"Elevator"} scene={'deadTwo'} sceneTransition={props.sceneTransition}></ButtonChoice>
         <ButtonChoice choice={'Stairs'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }

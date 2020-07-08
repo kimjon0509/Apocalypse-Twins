@@ -22,6 +22,10 @@ export default function KeywordDisplay(props) {
       sceneTransition={props.sceneTransition}
       pass={props.pass}
       keyword={props.keyword}
+      removeHeart ={props.removeHeart}
+      scene={props.scene}
+
+      setPath={props.setPath}
       ></InputSubmit>
       <Rune input={input} setInput={setInput} keyword={props.keyword}></Rune>
     </div>
