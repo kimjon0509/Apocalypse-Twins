@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
@@ -16,7 +16,7 @@ export default function BusNinth(props) {
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
-  
+
     function transition(changeMode, replace = false) {
       setHistory(prev => {
         if (replace) {
@@ -26,14 +26,18 @@ export default function BusNinth(props) {
         }
       });
     }
-  
-    
-  
-    return {mode: history[0], transition};
+
+
+
+    return { mode: history[0], transition };
   }
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
-  const styleShow = show ? {} : {visibility: 'hidden'}
+  const styleShow = show ? {} : { visibility: 'hidden' }
   const { mode, transition } = usePuzzleToChoices('Puzzle')
   return (
     <div className='scene-layout'>
@@ -46,14 +50,14 @@ export default function BusNinth(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.sceneTransition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.sceneTransition} setPath={setPath} ></KeywordDisplay>}
         </div>
       }
-      {mode === CHOICES && 
+      {mode === CHOICES &&
         <>
-        <ButtonChoice choice={'Wait and see what the car does'} scene={'tenth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice correctPath={buttonClass} choice={'Wait and see what the car does'} scene={'tenth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

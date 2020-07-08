@@ -39,6 +39,11 @@ export default function BusThird(props) {
   
     return {mode: history[0], transition, back };
   }
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
@@ -54,12 +59,12 @@ export default function BusThird(props) {
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'gas'} style={styleShow} sceneTransition={props.transition} puzzleToChoices={transition}></KeywordDisplay>}
+          {<KeywordDisplay keyword={'gas'} style={styleShow} sceneTransition={props.transition} puzzleToChoices={transition} setPath={setPath}></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Check the convience store'} scene={'sixth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice correctPath={buttonClass} choice={'Check the convience store'} scene={'sixth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         <ButtonChoice choice={'Go back to bus'} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }

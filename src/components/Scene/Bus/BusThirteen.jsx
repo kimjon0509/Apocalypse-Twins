@@ -39,6 +39,10 @@ export default function BusNinth(props) {
   
     return {mode: history[0], transition, back };
   }
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
@@ -54,12 +58,12 @@ export default function BusNinth(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} transition={transition} sceneTransition={props.sceneTransition}></KeywordDisplay>}
+          {<KeywordDisplay keyword={'quick'} style={styleShow} transition={transition} sceneTransition={props.sceneTransition} setPath={setPath}></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Wait and see what the car does (no gas)'} scene={'fourteenth'} sceneTransition={props.transition}></ButtonChoice>
+        <ButtonChoice correctPath={buttonClass} choice={'Wait and see what the car does (no gas)'} scene={'fourteenth'} sceneTransition={props.transition}></ButtonChoice>
         <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.transition}></ButtonChoice>
         <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.transition}></ButtonChoice>
         </>
