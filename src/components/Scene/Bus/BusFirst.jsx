@@ -39,6 +39,11 @@ export default function BusFirst(props) {
   
     return {mode: history[0], transition, back };
   }
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
@@ -54,13 +59,13 @@ export default function BusFirst(props) {
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'key'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'key'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.transition} setPath={setPath}></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
         <ButtonChoice choice={'Hotwire the bus'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Use key'} scene={'third'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        {path === true && <ButtonChoice correctPath={buttonClass} choice={'Use key'} scene={'third'} sceneTransition={props.sceneTransition}></ButtonChoice>}
         </>
       }
     </div>

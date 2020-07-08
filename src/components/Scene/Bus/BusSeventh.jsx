@@ -40,6 +40,10 @@ export default function BusSeventh(props) {
   
     return {mode: history[0], transition, back };
   }
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
   const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
@@ -55,12 +59,12 @@ export default function BusSeventh(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={props.sceneTransition} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'calm'} style={styleShow} sceneTransition={props.sceneTransition} puzzleToChoices={transition} setPath={setPath} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Take a nearby side road and continue driving(gas)'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice correctPath={buttonClass} choice={'Take a nearby side road and continue driving(gas)'} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         <ButtonChoice choice={'Stop the bus'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
