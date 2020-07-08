@@ -3,9 +3,12 @@ import React, {useEffect, useState} from "react";
 import DockFirst from './DockFirst';
 import DockSecond from './DockSecond';
 import DockThird from './DockThird';
-import DockFourth from './DockFourth';
+import DockFourth1 from './DockFourth1';
+import DockFourth2 from './DockFourth2'
 import DockFifth from './DockFifth';
+import DockSixth from './DockSixth';
 import GameOver from '../GameOver/GameOverScreen'
+import TitlePage from '../../Title-page/TitlePage'
 
 export default function DockStart(props) {
 
@@ -30,7 +33,8 @@ export default function DockStart(props) {
   const START = 'first';
   const SECOND = 'second';
   const THIRD = 'third';
-  const FOURTH = 'fourth';
+  const FOURTH1 = 'fourth1';
+  const FOURTH2 = 'fourth2';
   const FIFTH = 'fifth';
   const SIXTH = 'sixth';
   const SEVENTH = 'seventh';
@@ -38,17 +42,23 @@ export default function DockStart(props) {
   const NINTH = 'ninth';
   const TENTH = 'tenth';
   const DEAD = 'dead';
+  const START = 'start';
 
   return (
     <div className='scene-layout'>
-      {mode === START && <DockFirst sceneTransition={transition}></DockFirst>}
+      {mode === START && <DockFirst heart={props.heart} sceneTransition={transition}></DockFirst>}
 
-      {mode === SECOND && <DockSecond sceneTransition={transition}></DockSecond>}
-      {mode === THIRD && <DockThird sceneTransition={transition}></DockThird>}
+      {mode === SECOND && <DockSecond heart={props.heart} sceneTransition={transition}></DockSecond>}
+      {mode === THIRD && <DockThird heart={props.heart} sceneTransition={transition}></DockThird>}
       {mode === DEAD && <GameOver text="You have died. Try another path next time." maxLen={60} ></GameOver>}
 
-      {mode === FOURTH && <DockFourth sceneTransition={transition}></DockFourth>}
+      {mode === FOURTH1 && <DockFourth1 sceneTransition={transition}></DockFourth1>}
+      {mode === FOURTH2 && <DockFourth2 sceneTransition={transition}></DockFourth2>}
+
       {mode === FIFTH && <DockFifth sceneTransition={transition}></DockFifth>}
+      {mode === SIXTH && <DockSixth sceneTransition={transition}></DockSixth>}
+      {mode === START && <TitlePage sceneTransition={transition}></TitlePage>}
+
       {/* {props.mode === SIXTH && <DockFirst transition={props.transition}></DockFirst>}
       {props.mode === SEVENTH && <DockFirst transition={props.transition}></DockFirst>}
       {props.mode === EIGHTH && <DockFirst transition={props.transition}></DockFirst>}

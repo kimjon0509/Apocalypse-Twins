@@ -8,9 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayFirst(props) {
+export default function DockFourth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "You make your way down the grimey steps into the darkness of the subway station. Everything is quiet—the trains stopped operating not long after this all started. Looking down the tunnel to the right, you see a train parked on the tracks. Maybe it still works. To your left, the direction of the hospital, the tunnel continues into darkness. On foot would be quieter, but who knows what might be down there, and Vince is running out of time. You join minds, trying to sense which way holds danger...";
+  const sceneDescription = "After about an hour under their watch, the door opens and a breathless boater rushes in. “Selena needs help.” \n “Shit. You two don’t move. Not that you can.” \n They exit the building, leaving the door open behind them. After a few minutes, you hear a shambling sound getting nearer to the open door… \n Together you attempt to loosen your bonds using telekinesis.";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -48,24 +48,18 @@ export default function SubwayFirst(props) {
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay
-            keyword={'noise'}
-            style={styleShow}
-            puzzleToChoices={transition}
-            sceneTransition={props.sceneTransition}
-            ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'untie'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Walk'} scene={'third'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Train'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice choice={'Next'} scene={'fifth'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

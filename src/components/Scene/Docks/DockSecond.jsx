@@ -8,7 +8,7 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayFirst(props) {
+export default function DockSecond(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "You quietly pick your way between the buildings, one behind the other, keeping to the shadows. Entering an alley, you hear a hoarse groan to your left -- a group of zombies shambles toward you, but they haven’t noticed you yet. You both duck back. The pavement in the alley gleams with what looks like shards of broken glass; a few empty bottles lie nearby. On the other side of the alley, an open door leads into a darkened warehouse. You sense danger, but from what course?";
 
@@ -48,19 +48,20 @@ export default function SubwayFirst(props) {
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar health={3} style={styleShow} ></HealthBar>}
+          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'worry'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'crunch'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Sneak past the boaters'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Approach and try to talk with them'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Sneak across the alley'} scene={'third'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Wait for the zombies to pass'} scene={'fourth1'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Throw bottle to distract'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>

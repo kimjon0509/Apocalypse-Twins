@@ -8,7 +8,7 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function SubwayFirst(props) {
+export default function SubwayThird(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "Leaving the station behind, the tunnel is cold, dark, and quiet. After walking for some time, you stop short as you hear a groan from the darkness ahead. Unsure of its origin, you both extend your awareness, trying to sense what danger might lurk there…";
 
