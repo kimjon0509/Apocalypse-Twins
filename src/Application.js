@@ -10,11 +10,11 @@ import Bus from './components/Scene/Bus/BusStart'
 // import BackgroundImage from "./images/BackgroundImage.jpg"
 
 function Application() {
-  function useScene(initial) {
-    const [scene, setScene] = useState([initial]);
+  function useTransport(initial) {
+    const [transport, setTransport] = useState([initial]);
   
     function transition(changeMode, replace = false) {
-      setScene(prev => {
+      setTransport(prev => {
         if (replace) {
           return [changeMode, ...prev.slice(1)];
         } else {
@@ -23,20 +23,11 @@ function Application() {
       });
     }
   
-    function back() {
-      setScene(prev => {
-        if (prev.length > 1) {
-          return prev.slice(1);
-        } else {
-          return prev;
-        }
-      });
-    }
-  
-    return {mode: scene[0], transition, back };
+    return {mode: transport[0], transition };
   }
 
-  const {mode, transition} = useScene('Bus')
+  const {mode, transition} = useTransport('Bus')
+
   const START = 'TitlePage';
   const SUBWAY = 'Subway';
   const Bus = 'Bus';
@@ -44,9 +35,9 @@ function Application() {
 
   return (
     <main className="App">
-      {/*{true && <Subway mode={mode }transition={transition}></Subway>}*/}
-      {<Bus mode={mode }transition={transition}></Bus>}
-      {/*{false &&<Dock mode={mode }transition={transition}></Dock>} */}
+      {mode === SUBWAY && <Subway></Subway>}
+      {/* {false && <Bus mode={mode }transition={transition}></Bus>}
+      {false &&<Dock mode={mode }transition={transition}></Dock>} */}
     </main>
   );
 }

@@ -43,6 +43,7 @@ export default function SubwayFirst(props) {
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
+
   return (
     <div className='scene-layout'>
       {show ? <Timer transition={transition}></Timer> : <div className='timer-dummy'></div>}
@@ -54,13 +55,13 @@ export default function SubwayFirst(props) {
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'noise'} style={styleShow} transition={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'pursued'} style={styleShow} transition={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Walk'} scene={'second'} transition={props.transition}></ButtonChoice>
-        <ButtonChoice choice={'Train'} scene={'third'} transition={props.transition}></ButtonChoice>
+        <ButtonChoice choice={"don't stop"} scene={'fourth'} transition={transition}></ButtonChoice>
+        <ButtonChoice choice={'stop'} scene={'fifth'} transition={transition}></ButtonChoice>
         </>
       }
     </div>
