@@ -5,6 +5,13 @@ import SubwaySecond from './SubwaySecond';
 import SubwayThird from './SubwayThird';
 import SubwayFourth from './SubwayFourth';
 import SubwayFifth from './SubwayFifth';
+import SubwaySixth from './SubwaySixth';
+// import SubwaySeventh from './SubwaySeventh';
+// import SubwayNinth from './SubwayNinth'
+// import SubwayTenth from './SubwayTenth'
+// import SubwayEleventh from './SubwayEleventh'
+// import SubwayTwelfth from './SubwayTwelfth'
+
 import GameOver from '../GameOver/GameOverScreen'
 
 export default function SubwayStart(props) {
@@ -37,23 +44,28 @@ export default function SubwayStart(props) {
   const EIGHTH = 'eighth';
   const NINTH = 'ninth';
   const TENTH = 'tenth';
+  const ELEVENTH = 'eleventh';
+  const TWELFTH = 'twelfth';
   const DEAD = 'dead';
 
   return (
     <div className='scene-layout'>
-      {mode === START && <SubwayFirst sceneTransition={transition}></SubwayFirst>}
+      {mode === START && <SubwayFirst sceneTransition={transition} ></SubwayFirst>}
 
-      {mode === SECOND && <SubwaySecond sceneTransition={transition}></SubwaySecond>}
-      {mode === THIRD && <SubwayThird sceneTransition={transition}></SubwayThird>}
+      {mode === SECOND && <SubwaySecond heart={props.heart} sceneTransition={transition}></SubwaySecond>}
+      {mode === THIRD && <SubwayThird heart={props.heart} sceneTransition={transition}></SubwayThird>}
+      {mode === FOURTH && <SubwayFourth heart={props.heart} sceneTransition={transition}></SubwayFourth>}
+      {mode === FIFTH && <SubwayFifth heart={props.heart} sceneTransition={transition}></SubwayFifth>}
+      {mode === SIXTH && <SubwaySixth heart={props.heart} sceneTransition={transition}></SubwaySixth>}
+      {/* {mode === SEVENTH && <SubwaySeventh heart={props.heart} sceneTransition={transition}></SubwaySeventh>}
+      {mode === EIGHTH && <SubwayEighth heart={props.heart} sceneTransition={transition}></SubwayEighth>}
+      {mode === NINTH && <SubwayNinth heart={props.heart} sceneTransition={transition}></SubwayNinth>}
+      {mode === TENTH && <SubwayTenth heart={props.heart} sceneTransition={transition}></SubwayTenth>}
+      {mode === ELEVENTH && <SubwayEleventh heart={props.heart} sceneTransition={transition}></SubwayEleventh>}
+      {mode === TWELFTH && <SubwayTwelfth heart={props.heart} sceneTransition={transition}></SubwayTwelfth>} */}
+
       {mode === DEAD && <GameOver text="You have died. Try another path next time." maxLen={60} ></GameOver>}
 
-      {mode === FOURTH && <SubwayFourth sceneTransition={transition}></SubwayFourth>}
-      {mode === FIFTH && <SubwayFifth sceneTransition={transition}></SubwayFifth>}
-      {/* {props.mode === SIXTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === SEVENTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === EIGHTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === NINTH && <SubwayFirst transition={props.transition}></SubwayFirst>}
-      {props.mode === TENTH && <SubwayFirst transition={props.transition}></SubwayFirst>} */}
     </div>
   )
 }

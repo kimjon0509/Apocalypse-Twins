@@ -22,6 +22,10 @@ export default function Timer(props) {
       setTimeout(() => {
         props.sceneTransition('dead')
       }, 45000)
+    } else if (props.scene) {
+      setTimeout(() => {
+        props.sceneTransition('eleventh')
+      }, 45000)
     } else {
       setTimeout(() => {
         props.puzzleToChoices('Choices');
