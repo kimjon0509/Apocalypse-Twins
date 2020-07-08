@@ -51,7 +51,7 @@ export default function BusFirst(props) {
           {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay keyword={'key'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.transition} ></KeywordDisplay>}

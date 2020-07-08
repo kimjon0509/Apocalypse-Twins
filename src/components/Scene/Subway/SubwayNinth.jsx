@@ -52,7 +52,7 @@ export default function SubwaySeventh(props) {
           {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay keyword={'unlock'}

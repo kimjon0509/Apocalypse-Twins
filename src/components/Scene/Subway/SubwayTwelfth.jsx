@@ -51,7 +51,7 @@ export default function SubwayFourth(props) {
           {<HealthBar health={3} style={styleShow} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {/* {mode === CHOICES && 
         <>
         <ButtonChoice choice={"Next"} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>

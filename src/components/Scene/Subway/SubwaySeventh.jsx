@@ -44,6 +44,11 @@ export default function SubwaySeventh(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
   return (
     <div className='scene-layout'>
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
@@ -52,16 +57,29 @@ export default function SubwaySeventh(props) {
           {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'shaft'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay
+          keyword={'shaft'}
+          style={styleShow}
+          puzzleToChoices={transition} 
+          setPath={setPath}
+          ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={"Elevator"} scene={'deadTwo'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Stairs'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice
+          choice={"Elevator"}
+          scene={'deathTwo'}
+          sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice 
+          correctPath={buttonClass}
+          choice={'Stairs'}
+          scene={'ninth'}
+          sceneTransition={props.sceneTransition}
+        ></ButtonChoice>
         </>
       }
     </div>
