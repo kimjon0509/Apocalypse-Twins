@@ -7,6 +7,7 @@ import DockFourth1 from './DockFourth1';
 import DockFourth2 from './DockFourth2'
 import DockFifth from './DockFifth';
 import DockSixth from './DockSixth';
+import DockSeventh from './DockSeventh';
 import GameOver from '../GameOver/GameOverScreen'
 import TitlePage from '../../Title-page/TitlePage'
 
@@ -42,7 +43,7 @@ export default function DockStart(props) {
   const NINTH = 'ninth';
   const TENTH = 'tenth';
   const DEAD = 'dead';
-  const START = 'start';
+  const TITLE = 'start';
 
   return (
     <div className='scene-layout'>
@@ -57,7 +58,8 @@ export default function DockStart(props) {
 
       {mode === FIFTH && <DockFifth sceneTransition={transition}></DockFifth>}
       {mode === SIXTH && <DockSixth sceneTransition={transition}></DockSixth>}
-      {mode === START && <TitlePage sceneTransition={transition}></TitlePage>}
+      {mode === SEVENTH && <DockSeventh sceneTransition={transition}></DockSeventh>}
+      {mode === TITLE && <TitlePage sceneTransition={transition}></TitlePage>}
 
       {/* {props.mode === SIXTH && <DockFirst transition={props.transition}></DockFirst>}
       {props.mode === SEVENTH && <DockFirst transition={props.transition}></DockFirst>}

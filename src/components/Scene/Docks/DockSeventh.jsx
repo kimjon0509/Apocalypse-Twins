@@ -8,9 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function DockFirst(props) {
+export default function DockFifth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "As you approach the docks, you hear the sound of voices drifting on the air. Peering around the corner of a boarded-up fish and chip shack, you see a group of boaters arguing over something. They appear to be armed. You attempt to sense their intentions before acting...";
+  const sceneDescription = "You approach the boaters with the intent to talk. One of them, a young woman with a mask over her mouth, notices the two of you and they all turn. “Stop right there.” She levels a rifle in your direction. “One of you better start talking, or this isn’t going to end well for you.” You attempt to probe her mind for an answer that might get you through this...";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -54,14 +54,8 @@ export default function DockFirst(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'worry'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'rescue'} style={styleShow}scene={'eighth'} sceneTransition={props.sceneTransition} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
-      }
-      {mode === CHOICES && 
-        <>
-        <ButtonChoice choice={'Sneak past the boaters'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Approach and try to talk with them'} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        </>
       }
     </div>
   )

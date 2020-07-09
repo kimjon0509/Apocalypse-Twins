@@ -8,9 +8,9 @@ import HealthBar from '../../Scene-component/HealthBar';
 
 const classNames = require('classnames');
 
-export default function DockFirst(props) {
+export default function DockFifth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "As you approach the docks, you hear the sound of voices drifting on the air. Peering around the corner of a boarded-up fish and chip shack, you see a group of boaters arguing over something. They appear to be armed. You attempt to sense their intentions before acting...";
+  const sceneDescription = "“Yes, one of our younger members is trapped in a warehouse full of zombies… How did you know that?” She takes a hard look at you. “My name’s Selena. We didn’t have the numbers before, but with you two… Up for a little action?” How much would your assistance affect the fate of this youth?";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -54,13 +54,13 @@ export default function DockFirst(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'worry'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
+          {<KeywordDisplay keyword={'vital'} style={styleShow} puzzleToChoices={transition} ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice choice={'Sneak past the boaters'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Approach and try to talk with them'} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'You’re in a hurry'} scene={'ninth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice choice={'Help with the rescue'} scene={''} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
       }
     </div>
