@@ -29,7 +29,7 @@ export default function Timer(props) {
     } else if (props.scene) {
       timeout = setTimeout(() => {
         props.removeHeart()
-        props.sceneTransition('eleventh')
+        props.sceneTransition(props.scene)
       }, 45000)
     } else {
       timeout = setTimeout(() => {
