@@ -11,6 +11,8 @@ export default function ButtonChoice(props) {
     classname = 'next';
   }
 
+  console.log(props.scene)
+
   return (
     <div className='choices'>
       <div className={classname} onClick={() => {props.sceneTransition(props.scene)}}>

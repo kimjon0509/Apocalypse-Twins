@@ -54,6 +54,7 @@ export default function SubwayStart(props) {
   const DEAD = 'dead';
   const DEATHONE ='deathOne';
   const DEATHTWO ='deathTwo';
+  
   // const DEATHTHREE ='deathThree';
 
   return (

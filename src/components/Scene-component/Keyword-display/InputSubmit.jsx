@@ -62,7 +62,10 @@ export default function InputSubmit(props) {
         console.log('here', props.scene)
         props.sceneTransition(props.scene)
       } else{
-        props.setPath(true)
+        if(props.setPath) {
+          props.setPath(true)
+          props.puzzleToChoices('Choices');
+        }
         props.puzzleToChoices('Choices');
       }
 

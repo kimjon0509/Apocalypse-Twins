@@ -44,14 +44,21 @@ export default function SubwayFifth(props) {
       ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
+          {<HealthBar
+            style={styleShow}
+            heart={props.heart}
+          ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55} pass={'pass'}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55} pass={'pass'}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'deed'} style={styleShow} 
-          pass={'pass'} scene={'sixth'} sceneTransition={props.sceneTransition}></KeywordDisplay>}
+          {<KeywordDisplay
+          keyword={'deed'}
+          style={styleShow} 
+          pass={'pass'}
+          scene={'sixth'}
+          sceneTransition={props.sceneTransition}></KeywordDisplay>}
         </div>
       }
     </div>

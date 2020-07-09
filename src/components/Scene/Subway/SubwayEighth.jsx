@@ -44,6 +44,11 @@ export default function SubwayEighth(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
   return (
     <div className='scene-layout'>
       {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
@@ -52,10 +57,11 @@ export default function SubwayEighth(props) {
           {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
+          setPath={setPath}
           keyword={'exit'}
           style={styleShow} 
           puzzleToChoices={transition} 
@@ -65,6 +71,7 @@ export default function SubwayEighth(props) {
       {mode === CHOICES && 
         <>
           <ButtonChoice
+          correctPath={buttonClass}
           choice={"Stairs"}
           scene={'ninth'}
           sceneTransition={props.sceneTransition}
