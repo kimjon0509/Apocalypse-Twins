@@ -41,11 +41,15 @@ export default function DeadOne(props) {
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
-      {mode === CHOICES && 
+      <div style={styleShow} className='show-animation'>
+        <div className='heart-right'>
+        {mode === CHOICES && 
         <>
         <ButtonChoice choice={"Next"} scene={'dead'} sceneTransition={props.sceneTransition}></ButtonChoice>
         </>
-      }
+        }
+        </div>
+      </div>
     </div>
   )
 }
