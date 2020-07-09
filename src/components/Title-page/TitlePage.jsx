@@ -19,7 +19,7 @@ export default function TitlePage(props) {
         <TitleDescription description={descriptionStr}></TitleDescription>
       <div className='main-page-buttons'>
         <TitleButton buttonText={'How to play'}></TitleButton>
-        <TitleButton buttonText={'Start Game'} transition={props.transition}></TitleButton>
+        <TitleButton buttonText={'Start Game'} transport={props.transport}></TitleButton>
       </div>
     </div>
   </div>
