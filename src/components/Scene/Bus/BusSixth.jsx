@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ButtonNext from '../../Scene-component/ButtonNext';
 import Description from '../../Scene-component/Description';
 import HealthBar from '../../Scene-component/HealthBar';
@@ -10,7 +10,7 @@ export default function BusSixth(props) {
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
-  
+
     function transition(changeMode, replace = false) {
       setHistory(prev => {
         if (replace) {
@@ -20,7 +20,7 @@ export default function BusSixth(props) {
         }
       });
     }
-  
+
     function back() {
       setHistory(prev => {
         if (prev.length > 1) {
@@ -30,16 +30,16 @@ export default function BusSixth(props) {
         }
       });
     }
-  
-    return {mode: history[0], transition, back };
+
+    return { mode: history[0], transition, back };
   }
 
   const CHOICES = 'Choices'
 
   const { mode, transition } = usePuzzleToChoices('Choices')
   const [show, setShow] = useState(false)
-
-  useEffect (() => {
+  const styleShow = show ? {} : { visibility: 'hidden' }
+  useEffect(() => {
     props.addHeart()
   }, [])
 
@@ -49,14 +49,18 @@ export default function BusSixth(props) {
   return (
     <div className='scene-layout'>
       <div className='heart-right'>
+        <div style={styleShow} className='show-animation'>
           {<HealthBar heart={props.heart} ></HealthBar>}
         </div>
+      </div>
       <Description className='descripton-layout' setShow={setShow} puzzleToChoices={transition} text={sceneDescription} maxLen={55}></Description>
-      {mode === CHOICES &&
-        <>
-          <ButtonChoice scene={"fifth"} sceneTransition={props.sceneTransition} choice={"Next"}></ButtonChoice>
-        </>
-      }
+      <div style={styleShow} className='show-animation'>
+        {mode === CHOICES &&
+          <>
+            <ButtonChoice scene={"fifth"} sceneTransition={props.sceneTransition} choice={"Next"}></ButtonChoice>
+          </>
+        }
+      </div>
     </div>
   )
 }
