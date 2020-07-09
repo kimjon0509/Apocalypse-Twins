@@ -14,6 +14,7 @@ import BusEleventh from "./BusEleventh";
 import BusTwelfth from "./BusTwelfth";
 import BusThirteenth from "./BusThirteen";
 import BusFourteenth from "./BusFourteenth";
+import GameOver from '../GameOver/GameOverScreen'
 
 export default function BusStart(props) {
 
@@ -49,6 +50,7 @@ export default function BusStart(props) {
   const TWELFTH = 'twelfth';
   const THIRTEENTH = 'thirteenth';
   const FOURTEENTH = 'fourteenth';
+  const DEAD = 'dead'
 
   return (
     <div className='scene-layout'>
@@ -62,10 +64,11 @@ export default function BusStart(props) {
       {mode === EIGHTH && <BusEighth heart={props.heart} sceneTransition={transition}></BusEighth>}
       {mode === NINTH && <BusNinth heart={props.heart} sceneTransition={transition}></BusNinth>}
       {mode === TENTH && <BusTenth heart={props.heart} sceneTransition={transition}></BusTenth>}
-      {mode === ELEVENTH && <BusEleventh heart={props.heart} sceneTransition={transition}></BusEleventh>}
+      {mode === ELEVENTH && <BusEleventh heart={props.heart} removeHeart={props.removeHeart} sceneTransition={transition}></BusEleventh>}
       {mode === TWELFTH && <BusTwelfth heart={props.heart} sceneTransition={transition}></BusTwelfth>}
       {mode === THIRTEENTH && <BusThirteenth heart={props.heart} sceneTransition={transition}></BusThirteenth>}
       {mode === FOURTEENTH && <BusFourteenth heart={props.heart} sceneTransition={transition}></BusFourteenth>}
+      {mode === DEAD && <GameOver text="You have died, try another path"></GameOver>}
     </div>
   )
 }
