@@ -22,7 +22,7 @@ export default function KeywordDisplay(props) {
       sceneTransition={props.sceneTransition}
       pass={props.pass}
       keyword={props.keyword}
-      removeHeart ={props.removeHeart}
+      // removeHeart ={props.removeHeart}
       scene={props.scene}
 
       setPath={props.setPath}
