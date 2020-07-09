@@ -55,11 +55,15 @@ export default function SubwayFirst(props) {
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
-      {mode === CHOICES && 
-        <>
-        <ButtonChoice choice={"Next"} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        </>
-      }
+      <div style={styleShow} className='show-animation'>
+        <div className='heart-right'>
+        {mode === CHOICES && 
+          <>
+          <ButtonChoice choice={"Next"} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          </>
+        }
+        </div>
+      </div>
     </div>
   )
 }

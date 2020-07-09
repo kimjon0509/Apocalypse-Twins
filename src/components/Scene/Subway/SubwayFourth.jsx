@@ -60,14 +60,18 @@ export default function SubwayFourth(props) {
         text={sceneDescription}
         maxLen={55}
       ></Description>
-      {mode === CHOICES && 
-        <>
-        <ButtonChoice
-        choice={"Next"}
-        scene={'seventh'}
-        sceneTransition={props.sceneTransition}></ButtonChoice>
-        </>
-      }
+      <div style={styleShow} className='show-animation'>
+        <div className='heart-right'>
+        {mode === CHOICES && 
+          <>
+          <ButtonChoice
+            choice={"Next"}
+            scene={'seventh'}
+            sceneTransition={props.sceneTransition}></ButtonChoice>
+          </>
+        }
+        </div>
+      </div>
     </div>
   )
 }
