@@ -68,6 +68,13 @@ function Application() {
           removeHeart={removeHeart}>
         </Dock>}
       {mode === SUBWAY && 
+     { mode === BUS && 
+     <BusStart
+      heart={heart}
+      addHeart={addHeart}
+      removeHeart={removeHeart}
+     ></BusStart>}
+      { /*{mode === SUBWAY && 
         <Subway 
           heart={heart}
           addHeart={addHeart}
