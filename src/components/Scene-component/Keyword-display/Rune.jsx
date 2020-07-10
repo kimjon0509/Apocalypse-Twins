@@ -70,7 +70,8 @@ export default function Rune(props) {
         <span key={i}
           className='rune-output'
           onClick={() => {
-            if(props.input.length < props.keyword.length)props.setInput([...props.input, decodeHtml(rune)])}}>
+            if(props.input.length < props.keyword.length)
+            props.setInput([...props.input, decodeHtml(rune)])}}>
           {decodeHtml(rune)}
         </span>
       )
