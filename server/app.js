@@ -1,0 +1,66 @@
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+
+const port = process.env.PORT || 3001;
+// const index = require("./routes/index");
+
+const app = express();
+// app.use(index);
+
+const server = http.createServer(app);
+
+const io = socketIo(server);
+let player = [];
+
+//iterate through rooms and see num of users
+
+// if there is an empty room put them in that room
+
+io.on("connection", (socket) => {
+  console.log("New client connected");
+  // socket.playerArr = player;
+  socket.on('join', (room) => {
+    console.log('joined:',room);
+
+    io.in(room).clients((err, clients) => {
+      if (clients.length <= 1) {
+        console.log('client length:',clients.length);
+        socket.join(room, () => {
+          console.log('connected to',room);
+          io.in(room).clients((err, clients) => {
+          io.sockets.in(room).emit("new user", {players: clients})
+          console.log('client num', clients)
+          })
+          socket.emit('room connected', {playerId:socket.id, room});
+        });
+      } else {
+        socket.emit('room full', {message: 'room is full'})
+      }
+    })
+  })
+
+  // socket.on('system', (message) => {
+  //   socket.emit('system', {player: player});
+  // });
+
+  socket.on('game', (scene, roomNum) => {
+      io.sockets.in(roomNum).emit('game', scene)
+      console.log('server scene')
+  });
+
+  // socket.on('player id', () => {
+  //   socket.emit('player id', {playerId: player.id})
+  // })
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+    const index = player.indexOf(socket.id);
+    player.splice(index, 1);
+
+  });
+
+});
+
+
+server.listen(port, () => console.log(`Listening on port ${port}`));
