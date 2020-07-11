@@ -40,18 +40,39 @@ io.on("connection", (socket) => {
     })
   })
 
-  // socket.on('system', (message) => {
-  //   socket.emit('system', {player: player});
-  // });
-
   socket.on('game', (scene, roomNum) => {
-      io.sockets.in(roomNum).emit('game', scene)
-      console.log('server scene')
+    io.sockets.in(roomNum).emit('game', scene)
+    console.log('server scene')
   });
 
-  // socket.on('player id', () => {
-  //   socket.emit('player id', {playerId: player.id})
-  // })
+  socket.on('rune selected', (selected, roomNum) => {
+    console.log(selected);
+    // console.log(io.sockets)
+    console.log('room rune selected:', roomNum)
+    io.sockets.in(roomNum).emit('rune selected', selected)
+  });
+
+  socket.on('timer', (message, roomNum) => {
+    io.sockets.in(roomNum).emit('timer', message)
+  })
+
+  socket.on('scene', (message, roomNum) => {
+    io.sockets.in(roomNum).emit('scene', message)
+  })
+
+  socket.on('puzzle to choices', (message, roomNum) => {
+    io.sockets.in(roomNum).emit('puzzle to choices', message)
+  })
+
+  socket.on('input box class', (message, roomNum) => {
+    io.sockets.in(roomNum).emit('input box class', message)
+  })
+
+  socket.on('show best path', (message, roomNum) => {
+    console.log(io.sockets)
+    console.log('show best path', message, roomNum)
+    io.sockets.in(roomNum).emit('show best path', message)
+  })
 
   socket.on("disconnect", () => {
     console.log("Client disconnected");
@@ -59,6 +80,7 @@ io.on("connection", (socket) => {
     player.splice(index, 1);
 
   });
+
 
 });
 

@@ -8,10 +8,12 @@ import SubwayFifth from './SubwayFifth';
 import SubwaySixth from './SubwaySixth';
 import SubwaySeventh from './SubwaySeventh';
 import SubwayEighth from './SubwayEighth';
-import SubwayNinth from './SubwayNinth'
-import SubwayTenth from './SubwayTenth'
-import SubwayEleventh from './SubwayEleventh'
-import SubwayTwelfth from './SubwayTwelfth'
+import SubwayNinth from './SubwayNinth';
+import SubwayTenth from './SubwayTenth';
+import SubwayEleventh from './SubwayEleventh';
+import SubwayTwelfth from './SubwayTwelfth';
+
+import {webSocket} from '../../../webSocket';
 
 import DeathOne from './DeathOne';
 import DeathTwo from './DeathTwo';
@@ -57,13 +59,38 @@ export default function SubwayStart(props) {
   
   // const DEATHTHREE ='deathThree';
 
+  webSocket.on('scene', (message) => {
+    transition(message)
+  })
+
   return (
     <div className='scene-layout'>
-      {mode === START && <SubwayFirst heart={props.heart} sceneTransition={transition} ></SubwayFirst>}
+      {mode === START && 
+      <SubwayFirst 
+        heart={props.heart}
+        sceneTransition={transition} 
+
+        //sockets
+        showSelectedRune={props.showSelectedRune}
+        timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+
+        ></SubwayFirst>}
       {mode === SECOND && <SubwaySecond heart={props.heart} sceneTransition={transition}></SubwaySecond>}
       {mode === THIRD && <SubwayThird heart={props.heart} sceneTransition={transition}></SubwayThird>}
       {mode === FOURTH && <SubwayFourth heart={props.heart} sceneTransition={transition}></SubwayFourth>}
-      {mode === FIFTH && <SubwayFifth heart={props.heart} sceneTransition={transition}></SubwayFifth>}
+      {mode === FIFTH && 
+        <SubwayFifth 
+        heart={props.heart}
+        sceneTransition={transition}
+
+        //sockets
+        timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        ></SubwayFifth>}
       {mode === SIXTH && <SubwaySixth heart={props.heart} sceneTransition={transition}></SubwaySixth>}
       {mode === SEVENTH && <SubwaySeventh heart={props.heart} sceneTransition={transition}></SubwaySeventh>}
       {mode === EIGHTH && <SubwayEighth heart={props.heart} sceneTransition={transition}></SubwayEighth>}

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 // import './App.css';
+import { webSocket } from './webSocket';
 
 import './Application.scss'
 import TitlePage from './components/Title-page/TitlePage'
@@ -19,8 +20,8 @@ import IntroFifth from './components/Scene/Intro/IntroFifth'
 import Room from './room'
 
 //socket client
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:3001";
+// import socketIOClient from "socket.io-client";
+// const ENDPOINT = "http://localhost:3001";
 
 //USE THIS LATER FOR RUNES
 // props.playerArr[1] === props.playerId
@@ -32,8 +33,11 @@ function Application() {
   const [playerArr, setPlayerArr] = useState([]);
   const [room , setRoom] = useState(0)
   const [playerId, setPlayerId] = useState('')
+  // const [socket, setSocket] = useState(undefined);
 
-  let socket = socketIOClient(ENDPOINT);;
+  //maybe set state of runes and pass it through to inputfield
+
+  // let socket = socketIOClient(ENDPOINT);
   // let playerArr;
   useEffect(() => {
     // socket = socketIOClient(ENDPOINT);
@@ -44,37 +48,29 @@ function Application() {
     //   console.log(message.player);
     //   playerArr = message.player
     // });
-
-    console.log(socket)
-
-    socket.on('game', (scene) => {
+    // setSocket(socketIOClient(ENDPOINT));
+    webSocket.on('game', (scene) => {
       console.log('client scene')
       transition(scene);
     })
 
-    socket.on('room connected', (message) => {
+    webSocket.on('room connected', (message) => {
       console.log('check')
       setRoom(message.room)
       setPlayerId(message.playerId)
       console.log(message);
     })
-    socket.on('new user', (message) => {
+    webSocket.on('new user', (message) => {
       console.log('new user')
       setPlayerArr(message.players);
       // console.log('player arr', playerId)
     })
-    socket.on('room full', (message) => {
+    webSocket.on('room full', (message) => {
       console.log('room full')
       console.log(message);
     })
   
   }, []);
-
-  const nextPage = (scene) => {
-    console.log(socket)
-    socket.emit('game', scene, room);
-  } 
-
 
   function useHeart(initial) {
     const [heart, setHeart] = useState(initial);
@@ -95,6 +91,7 @@ function Application() {
   }
 
   const {heart, addHeart, removeHeart} = useHeart([<HeartFull />,<HeartFull />,<HeartFull />])
+
  const [path, setPath] = useState(false)
 
   function useTransport(initial) {
@@ -126,6 +123,39 @@ function Application() {
   const INTROFIFTH = 'introFifth';
 
   const ROOM = 'room';
+
+    // web socket functions
+    const nextPage = (scene) => {
+      console.log(webSocket)
+      webSocket.emit('game', scene, room);
+    } 
+  
+    const showSelectedRune = (selected) => {
+      webSocket.emit('rune selected', selected, room)
+    }
+  
+    const timerRunOut = (message) => {
+      webSocket.emit('timer', message, room)
+    }
+
+    const socketSceneTransition = (scene) => {
+      webSocket.emit('scene', scene, room)
+    }
+
+    const socketPuzzleToChoices = (message) => {
+      webSocket.emit('puzzle to choices', message, room)
+    }
+
+    const socketSetInputFieldBoxClass = (message) => {
+      webSocket.emit('input box class', message, room)
+    }
+
+    const socketSetPath = (message) => {
+      console.log(message)
+      webSocket.emit('show best path', message, room)
+    }
+    //////////////////////////////////////////////////
+
   return (
     <main className="App">
 
@@ -133,16 +163,15 @@ function Application() {
     <Room 
       nextPage={nextPage}
       transport={transition}
-      socket={socket}
+      webSocket={webSocket}
       ></Room>}
 
     { mode === START && 
       <TitlePage
       nextPage={nextPage}
+
       transport={transition}
-      room={room}
-      playerArr={playerArr} 
-      playerId={playerId}
+      playerArr={playerArr}
       ></TitlePage>}
 
      { mode === BUS && 
@@ -155,6 +184,14 @@ function Application() {
 
     {mode === SUBWAY && 
         <Subway 
+        //sockets
+          showSelectedRune={showSelectedRune}
+          timerRunOut={timerRunOut}
+          socketSceneTransition={socketSceneTransition}
+          socketPuzzleToChoices={socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+          socketSetPath={socketSetPath}
+          
           heart={heart}
           addHeart={addHeart}
           removeHeart={removeHeart}

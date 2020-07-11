@@ -25,15 +25,18 @@ export default function Timer(props) {
     if (props.pass) {
       timeout = setTimeout(() => {
         props.sceneTransition('dead')
+        props.socketSceneTransition('dead')
       }, 45000)
     } else if (props.scene) {
       timeout = setTimeout(() => {
         props.removeHeart()
         props.sceneTransition(props.scene)
+        props.socketSceneTransition(props.scene)
       }, 45000)
     } else {
       timeout = setTimeout(() => {
         props.puzzleToChoices('Choices');
+        props.timerRunOut('Choices')
       }, 45000)
     }
   }, [])

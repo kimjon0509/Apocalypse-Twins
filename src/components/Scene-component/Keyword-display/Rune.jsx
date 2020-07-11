@@ -28,6 +28,9 @@ export default function Rune(props) {
   
     return array;
   }
+
+  // console.log('input ', props.input)
+
   useEffect(() => {
     setShuffleWord(shuffle(props.keyword.split('')))
   }, [])
@@ -70,8 +73,13 @@ export default function Rune(props) {
         <span key={i}
           className='rune-output'
           onClick={() => {
-            if(props.input.length < props.keyword.length)
-            props.setInput([...props.input, decodeHtml(rune)])}}>
+            if(props.input.length < props.keyword.length) {
+              props.setInput([...props.input, decodeHtml(rune)])
+              //showSelectedRune called this send the rune to the server
+              props.showSelectedRune([...props.input, decodeHtml(rune)])
+            }
+          }}
+            >
           {decodeHtml(rune)}
         </span>
       )
