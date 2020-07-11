@@ -36,7 +36,7 @@ export default function Timer(props) {
     } else {
       timeout = setTimeout(() => {
         props.puzzleToChoices('Choices');
-        props.timerRunOut('Choices')
+        props.socketPuzzleToChoices('Choices');
       }, 45000)
     }
   }, [])

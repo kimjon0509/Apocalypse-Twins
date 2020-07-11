@@ -52,9 +52,9 @@ io.on("connection", (socket) => {
     io.sockets.in(roomNum).emit('rune selected', selected)
   });
 
-  socket.on('timer', (message, roomNum) => {
-    io.sockets.in(roomNum).emit('timer', message)
-  })
+  // socket.on('timer', (message, roomNum) => {
+  //   io.sockets.in(roomNum).emit('timer', message)
+  // })
 
   socket.on('scene', (message, roomNum) => {
     io.sockets.in(roomNum).emit('scene', message)
@@ -66,6 +66,10 @@ io.on("connection", (socket) => {
 
   socket.on('input box class', (message, roomNum) => {
     io.sockets.in(roomNum).emit('input box class', message)
+  })
+
+  socket.on('show', (message, roomNum) => {
+    io.sockets.in(roomNum).emit('show', message)
   })
 
   socket.on('show best path', (message, roomNum) => {

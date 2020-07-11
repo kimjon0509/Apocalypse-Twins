@@ -4,9 +4,7 @@ import {webSocket} from './webSocket';
 const classNames = require('classnames');
 
 export default function Room(props) {
-  useEffect(() => {
-  }
-  ,[])
+
   return (
   <>
   <button onClick={() => {

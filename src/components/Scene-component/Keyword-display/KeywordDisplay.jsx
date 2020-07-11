@@ -26,7 +26,7 @@ export default function KeywordDisplay(props) {
         setInput={setInput}
 
         //sockets
-         showSelectedRune={props.showSelectedRune}
+        socketSetInput={props.socketSetInput}
         
       
       ></InputClear>
@@ -52,9 +52,12 @@ export default function KeywordDisplay(props) {
       //
       setPath={props.setPath}
 
+      playerId={props.playerId}
+      playerArr={props.playerArr}
+
       //sockets
       socketPuzzleToChoices={props.socketPuzzleToChoices}
-      showSelectedRune={props.showSelectedRune}
+      socketSetInput={props.socketSetInput}
       socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
       socketSceneTransition={props.socketSceneTransition}
       socketSetPath={props.socketSetPath}
@@ -65,7 +68,10 @@ export default function KeywordDisplay(props) {
       keyword={props.keyword}
 
       //sockets
-      showSelectedRune={props.showSelectedRune}
+      socketSetInput={props.socketSetInput}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}
       ></Rune>
     </div>
   );

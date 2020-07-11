@@ -54,7 +54,7 @@ export default function SubwayFirst(props) {
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
   // sockets
-  if (webSocket) {
+  // if (webSocket) {
     console.log(webSocket)
     webSocket.on('puzzle to choices', (message) => {
       transition(message);
@@ -63,7 +63,7 @@ export default function SubwayFirst(props) {
     webSocket.on('show best path', (message) => {
       setPath(message)
     });
-  }
+  // }
   
   
   return (
@@ -72,7 +72,8 @@ export default function SubwayFirst(props) {
       <Timer
         puzzleToChoices={transition}
         // web sockets
-        timerRunOut={props.timerRunOut}
+        // timerRunOut={props.timerRunOut}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
         socketSceneTransition={props.socketSceneTransition}
 
         ></Timer> : <div className='timer-dummy'></div>}
@@ -97,13 +98,14 @@ export default function SubwayFirst(props) {
             setPath={setPath}
 
             //socket functions
-            showSelectedRune={props.showSelectedRune}
+            socketSetInput={props.socketSetInput}
             socketPuzzleToChoices={props.socketPuzzleToChoices}
             socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
             socketSceneTransition={props.socketSceneTransition}
             socketSetPath={props.socketSetPath}
-
             
+            playerId={props.playerId}
+            playerArr={props.playerArr}
 
             ></KeywordDisplay>}
         </div>
@@ -115,8 +117,17 @@ export default function SubwayFirst(props) {
           choice={'Walk'}
           scene={'third'}
           sceneTransition={props.sceneTransition}
+
+          //sockets
+          socketSceneTransition={props.socketSceneTransition}
           ></ButtonChoice>
-          <ButtonChoice choice={'Train'} scene={'second'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice
+          choice={'Train'}
+          scene={'second'}
+          sceneTransition={props.sceneTransition}
+          
+          //sockets
+          socketSceneTransition={props.socketSceneTransition}></ButtonChoice>
         </>
       }
     </div>
