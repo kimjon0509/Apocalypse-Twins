@@ -1,0 +1,77 @@
+.room-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.room-wrap{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.room-title {
+  display: flex;
+  justify-content: center;
+  font-family: 'Scratchies', sans-serif;
+  -webkit-text-stroke: 0.35px silver;
+}
+.room-label {
+  font-family: 'Scratchies', sans-serif;
+  margin: 0 15px;
+  color: black;
+}
+
+
+.input-text{
+  background-color: transparent;
+  background: transparent;
+  border: none;
+  border-bottom: 5px solid #8FCFAC;
+  font-family: 'scratchies';
+  color: whitesmoke;
+  text-align: center;
+  // cursor: blink;
+  &:focus {
+    outline: none;
+  }
+}
+
+.room {
+    display: inline-block;
+    background-color: transparent;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    // font-size: 0.75em;
+    font-size: 1.85em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Scratchies',sans-serif;
+    font-weight: 300;
+    color: lightgrey;
+    text-align: center;
+    transition: all 0.2s;
+    margin: 30px;
+    &:hover {
+      
+      color: #000000;
+      background-color: #FFFFFF;
+      
+    }
+
+}
+
+
+
+@media all and (max-width:30em) {
+	.next {
+		display: block;
+		margin: 0.4em auto;
+	}
+}
