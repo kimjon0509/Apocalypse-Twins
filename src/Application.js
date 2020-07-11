@@ -160,6 +160,10 @@ function Application() {
       console.log(message)
       webSocket.emit('show best path', message, room)
     }
+
+    const socketSetRoomArr = (message) => {
+      webSocket.emit('room list', message)
+    }
     //////////////////////////////////////////////////
     
   return (
@@ -168,6 +172,7 @@ function Application() {
     { mode === ROOM && 
     <Room 
       transport={transition}
+      socketSetRoomArr={socketSetRoomArr}
       ></Room>}
 
     { mode === START && 

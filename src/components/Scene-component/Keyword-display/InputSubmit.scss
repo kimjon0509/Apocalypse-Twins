@@ -5,21 +5,9 @@
 }
 
 .submit-input-field {
-  width: 45%;
-  // color: #6c757d;
+  width: 40%;
   background-color: transparent;
   background-image: none;
-  // border-color: #6c757d;
-  // display: inline-block;
-  // font-weight: 400;
-  // text-align: center;
-  // white-space: nowrap;
-  // vertical-align: middle;
-  // user-select: none;
-  // padding: .375rem .75rem;
-  // font-size: 1rem;
-  // line-height: 1.5;
-  // border-radius: .25rem;
   display: inline-block;
 	padding: 0.35em 1.2em;
 	border: 0.1em solid #FFFFFF;
@@ -31,7 +19,7 @@
 	font-weight: 300;
 	color: lightgrey;
 	text-align: center;
-	transition: all 0.2s;
+  transition: all 0.2s;
 	&:hover {
     
 		color: #000000;
@@ -62,5 +50,5 @@
 	font-weight: 300;
 	color: transparent;
 	text-align: center;
-	transition: all 0.2s;
+  transition: all 0.2s;
 }

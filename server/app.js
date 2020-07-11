@@ -78,6 +78,10 @@ io.on("connection", (socket) => {
     io.sockets.in(roomNum).emit('show best path', message)
   })
 
+  socket.on('room list', (message) => {
+    io.emit('room list', message)
+  })
+
   socket.on("disconnect", () => {
     console.log("Client disconnected");
     const index = player.indexOf(socket.id);
