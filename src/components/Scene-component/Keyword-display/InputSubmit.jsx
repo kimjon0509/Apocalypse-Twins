@@ -61,18 +61,30 @@ export default function InputSubmit(props) {
       if (props.pass) {
         console.log('here', props.scene)
         props.sceneTransition(props.scene)
+        props.socketSceneTransition(props.scene)
       } else{
         if(props.setPath) {
-          props.setPath(true)
+          props.setPath(true);
+          props.socketSetPath(true);
+
           props.puzzleToChoices('Choices');
+          props.socketPuzzleToChoices('Choices');
         }
         props.puzzleToChoices('Choices');
+        props.socketPuzzleToChoices('Choices');
+
       }
 
     } else {
       props.setInput([]);
+      props.showSelectedRune([]);
+      
       props.setInputFieldBoxClass('input-field-box incorrect')
-      setTimeout(() => {props.setInputFieldBoxClass('input-field-box')}, 500)
+      props.socketSetInputFieldBoxClass('input-field-box incorrect')
+      setTimeout(() => {
+        props.setInputFieldBoxClass('input-field-box')
+        props.socketSetInputFieldBoxClass('input-field-box')
+      }, 500)
     }
   }
   

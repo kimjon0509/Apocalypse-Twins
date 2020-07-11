@@ -41,6 +41,10 @@ export default function SubwayFifth(props) {
       pass={'pass'}
       scene={'deathOne'}
       sceneTransition={props.sceneTransition}
+
+      timerRunOut={props.timerRunOut}
+      socketSceneTransition={props.socketSceneTransition}
+
       ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>

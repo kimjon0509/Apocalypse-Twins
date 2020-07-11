@@ -3,6 +3,7 @@ import './InputField.scss'
 
 
 export default function InputField(props) {
+  
   function inputFieldBlock() {
     if (props.input.length <= props.keyword.length ) {
       let inputFieldBox =props.keyword.split('').map((char, i) => {

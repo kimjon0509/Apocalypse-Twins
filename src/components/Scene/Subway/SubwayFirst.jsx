@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function SubwayFirst(props) {
@@ -39,6 +41,7 @@ export default function SubwayFirst(props) {
   
     return {mode: history[0], transition, back };
   }
+
   // Show correct path when user gets the answer correct
   const [path, setPath] = useState(false)
   const buttonClass = classNames("button", {
@@ -49,9 +52,31 @@ export default function SubwayFirst(props) {
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
+
+  // sockets
+  if (webSocket) {
+    console.log(webSocket)
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+  
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
+  }
+  
+  
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? 
+      <Timer
+        puzzleToChoices={transition}
+        // web sockets
+        timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+
+        ></Timer> : <div className='timer-dummy'></div>}
+
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar
@@ -70,6 +95,15 @@ export default function SubwayFirst(props) {
             sceneTransition={props.sceneTransition}
             
             setPath={setPath}
+
+            //socket functions
+            showSelectedRune={props.showSelectedRune}
+            socketPuzzleToChoices={props.socketPuzzleToChoices}
+            socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+            socketSceneTransition={props.socketSceneTransition}
+            socketSetPath={props.socketSetPath}
+
+            
 
             ></KeywordDisplay>}
         </div>
