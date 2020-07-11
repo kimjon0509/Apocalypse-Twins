@@ -24,7 +24,7 @@ export default function TitlePage(props) {
          <TitleButton
          buttonText={'Start Game'}
          transport={props.transport}
-         nextPage={props.nextPage}
+         socketSceneTransition={props.socketSceneTransition}
          ></TitleButton>
         }
       

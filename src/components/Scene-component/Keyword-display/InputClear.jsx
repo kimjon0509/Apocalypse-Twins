@@ -9,7 +9,7 @@ export default function InputClear(props) {
         className='clear-input-field'
         onClick={() => {
           props.setInput([]);
-          props.showSelectedRune([]);
+          props.socketSetInput([]);
           }}>
         Clear Input
       </button>

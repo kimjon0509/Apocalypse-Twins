@@ -77,7 +77,7 @@ export default function InputSubmit(props) {
 
     } else {
       props.setInput([]);
-      props.showSelectedRune([]);
+      props.socketSetInput([]);
       
       props.setInputFieldBoxClass('input-field-box incorrect')
       props.socketSetInputFieldBoxClass('input-field-box incorrect')
@@ -91,9 +91,16 @@ export default function InputSubmit(props) {
 
   return (
     <div className='submit-input-div'>
-      <button className='submit-input-field' onClick={checkAnswer}>
-        Submit Answer
-      </button>
+      {props.playerArr[0] === props.playerId &&
+        <button className='submit-input-field' onClick={checkAnswer}>
+          Submit Answer
+        </button>
+      }
+      {props.playerArr[1] === props.playerId &&
+        <button className='submit-input-field-empty'>
+          Submit Answer
+        </button>
+      }
     </div>
   );
 }

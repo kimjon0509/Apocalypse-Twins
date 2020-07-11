@@ -35,6 +35,10 @@ export default function Rune(props) {
     setShuffleWord(shuffle(props.keyword.split('')))
   }, [])
 
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
   function getRuneChar(shuffledWord) {
     const runeArr = [];
     const rune = {
@@ -68,19 +72,26 @@ export default function Rune(props) {
     shuffledWord.forEach(char => {
       runeArr.push(rune[char]);
     });
-    return runeArr.map((rune, i) => {
+    return runeArr.map((runeChar, i) => {
       return (
         <span key={i}
           className='rune-output'
           onClick={() => {
-            if(props.input.length < props.keyword.length) {
-              props.setInput([...props.input, decodeHtml(rune)])
-              //showSelectedRune called this send the rune to the server
-              props.showSelectedRune([...props.input, decodeHtml(rune)])
+            if(props.playerArr[0] === props.playerId) {
+              if(props.input.length < props.keyword.length) {
+                props.setInput([...props.input, decodeHtml(runeChar)])
+                //showSelectedRune called this send the rune to the server
+                props.socketSetInput([...props.input, decodeHtml(runeChar)])
+              }
             }
           }}
             >
-          {decodeHtml(rune)}
+          {decodeHtml(runeChar)}
+          {props.playerArr[1] === props.playerId &&
+            <div className='rune-output letter'>
+              {getKeyByValue(rune, runeChar)}
+            </div>
+          }
         </span>
       )
     })

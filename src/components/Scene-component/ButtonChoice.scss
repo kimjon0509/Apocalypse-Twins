@@ -18,8 +18,10 @@
     
 	}
 	&.correct-path{
-		border: 0.1em solid red;
-		background: red;
+		border: 0.1em solid #FFFFFF;
+		color: royalblue;
+		-webkit-text-stroke: 1px lightblue;
+		text-shadow: 1px 1px 2px lightblue, 0 0 1em lightblue, 0 0 1.2em lightblue;
 	}
 }
 @media all and (max-width:30em) {

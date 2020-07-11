@@ -71,36 +71,162 @@ export default function SubwayStart(props) {
         sceneTransition={transition} 
 
         //sockets
-        showSelectedRune={props.showSelectedRune}
-        timerRunOut={props.timerRunOut}
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
         socketSceneTransition={props.socketSceneTransition}
         socketPuzzleToChoices={props.socketPuzzleToChoices}
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
 
         ></SubwayFirst>}
-      {mode === SECOND && <SubwaySecond heart={props.heart} sceneTransition={transition}></SubwaySecond>}
-      {mode === THIRD && <SubwayThird heart={props.heart} sceneTransition={transition}></SubwayThird>}
-      {mode === FOURTH && <SubwayFourth heart={props.heart} sceneTransition={transition}></SubwayFourth>}
+      {mode === SECOND && 
+        <SubwaySecond
+          heart={props.heart}
+          sceneTransition={transition}
+
+          socketSetInput={props.socketSetInput}
+          // timerRunOut={props.timerRunOut}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+        
+        ></SubwaySecond>}
+      {mode === THIRD && 
+        <SubwayThird heart={props.heart}
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwayThird>}
+      {mode === FOURTH && 
+        <SubwayFourth 
+        heart={props.heart} 
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwayFourth>}
       {mode === FIFTH && 
         <SubwayFifth 
         heart={props.heart}
         sceneTransition={transition}
 
-        //sockets
-        timerRunOut={props.timerRunOut}
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
         socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
         ></SubwayFifth>}
-      {mode === SIXTH && <SubwaySixth heart={props.heart} sceneTransition={transition}></SubwaySixth>}
-      {mode === SEVENTH && <SubwaySeventh heart={props.heart} sceneTransition={transition}></SubwaySeventh>}
-      {mode === EIGHTH && <SubwayEighth heart={props.heart} sceneTransition={transition}></SubwayEighth>}
-      {mode === NINTH && <SubwayNinth heart={props.heart} 
-      removeHeart ={props.removeHeart}
-      sceneTransition={transition}
-      ></SubwayNinth>}
-      {mode === TENTH && <SubwayTenth heart={props.heart} sceneTransition={transition}></SubwayTenth>}
-      {mode === ELEVENTH && <SubwayEleventh heart={props.heart} sceneTransition={transition}></SubwayEleventh>}
-      {mode === TWELFTH && <SubwayTwelfth heart={props.heart} sceneTransition={transition}></SubwayTwelfth>}
+      {mode === SIXTH && 
+      <SubwaySixth 
+        heart={props.heart} 
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwaySixth>}
+      {mode === SEVENTH && 
+        <SubwaySeventh 
+        heart={props.heart}
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwaySeventh>}
+      {mode === EIGHTH && 
+        <SubwayEighth 
+        heart={props.heart}
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwayEighth>}
+      {mode === NINTH && 
+        <SubwayNinth 
+        heart={props.heart} 
+        removeHeart ={props.removeHeart}
+        sceneTransition={transition}
+
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwayNinth>}
+      {mode === TENTH && 
+        <SubwayTenth 
+        heart={props.heart} 
+        sceneTransition={transition}
+        
+        socketSetInput={props.socketSetInput}
+        // timerRunOut={props.timerRunOut}
+        socketSceneTransition={props.socketSceneTransition}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+        socketSetPath={props.socketSetPath}
+        socketSetShow={props.socketSetShow}
+        ></SubwayTenth>}
+      {mode === ELEVENTH && 
+        <SubwayEleventh 
+          heart={props.heart} 
+          sceneTransition={transition}
+        
+          socketSetInput={props.socketSetInput}
+          // timerRunOut={props.timerRunOut}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+        ></SubwayEleventh>}
+      {mode === TWELFTH && 
+        <SubwayTwelfth 
+          heart={props.heart} 
+          sceneTransition={transition}
+
+          socketSetInput={props.socketSetInput}
+          // timerRunOut={props.timerRunOut}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+        ></SubwayTwelfth>}
 
       {mode === DEATHONE && <DeathOne heart={props.heart} sceneTransition={transition}></DeathOne>}
       {mode === DEATHTWO && <DeathTwo heart={props.heart} sceneTransition={transition}></DeathTwo>}

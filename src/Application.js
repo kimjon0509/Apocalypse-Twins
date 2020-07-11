@@ -49,6 +49,7 @@ function Application() {
     //   playerArr = message.player
     // });
     // setSocket(socketIOClient(ENDPOINT));
+
     webSocket.on('game', (scene) => {
       console.log('client scene')
       transition(scene);
@@ -124,19 +125,24 @@ function Application() {
 
   const ROOM = 'room';
 
+
     // web socket functions
     const nextPage = (scene) => {
       console.log(webSocket)
       webSocket.emit('game', scene, room);
     } 
   
-    const showSelectedRune = (selected) => {
+    const socketSetInput = (selected) => {
       webSocket.emit('rune selected', selected, room)
     }
-  
-    const timerRunOut = (message) => {
-      webSocket.emit('timer', message, room)
+
+    const socketSetShow = (message) => {
+      webSocket.emit('show', message, room)
     }
+  
+    // const timerRunOut = (message) => {
+    //   webSocket.emit('timer', message, room)
+    // }
 
     const socketSceneTransition = (scene) => {
       webSocket.emit('scene', scene, room)
@@ -155,20 +161,18 @@ function Application() {
       webSocket.emit('show best path', message, room)
     }
     //////////////////////////////////////////////////
-
+    
   return (
     <main className="App">
 
     { mode === ROOM && 
     <Room 
-      nextPage={nextPage}
       transport={transition}
-      webSocket={webSocket}
       ></Room>}
 
     { mode === START && 
       <TitlePage
-      nextPage={nextPage}
+      socketSceneTransition={nextPage}
 
       transport={transition}
       playerArr={playerArr}
@@ -185,16 +189,20 @@ function Application() {
     {mode === SUBWAY && 
         <Subway 
         //sockets
-          showSelectedRune={showSelectedRune}
-          timerRunOut={timerRunOut}
+          socketSetInput={socketSetInput}
+          // timerRunOut={timerRunOut}
           socketSceneTransition={socketSceneTransition}
           socketPuzzleToChoices={socketPuzzleToChoices}
           socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
           socketSetPath={socketSetPath}
+          socketSetShow={socketSetShow}
           
           heart={heart}
           addHeart={addHeart}
           removeHeart={removeHeart}
+
+          playerId={playerId}
+          playerArr={playerArr}
         ></Subway>
     }
 
@@ -206,11 +214,62 @@ function Application() {
         ></Dock>
     }
 
-    { mode === INTROFIRST && <IntroFirst sceneTransition={transition}></IntroFirst>}
-    { mode === INTROSECOND && <IntroSecond sceneTransition={transition}></IntroSecond>}
-    { mode === INTROTHIRD && <IntroThird sceneTransition={transition}></IntroThird>}
-    { mode === INTROFOURTH && <IntroFourth sceneTransition={transition}></IntroFourth>}
-    { mode === INTROFIFTH && <IntroFifth sceneTransition={transition}></IntroFifth>}
+    { mode === INTROFIRST && 
+      <IntroFirst 
+        sceneTransition={transition}
+
+        socketSceneTransition={nextPage}
+        socketPuzzleToChoices={socketPuzzleToChoices}
+        socketSetShow={socketSetShow}
+        ></IntroFirst>}
+
+    { mode === INTROSECOND && 
+      <IntroSecond
+        sceneTransition={transition}
+
+        playerId={playerId}
+        playerArr={playerArr}
+        
+        socketSceneTransition={nextPage}
+        socketSetInput={socketSetInput}
+        socketPuzzleToChoices={socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+        socketSetPath={socketSetPath}
+        socketSetShow={socketSetShow}
+      ></IntroSecond>}
+
+    { mode === INTROTHIRD && 
+      <IntroThird
+        sceneTransition={transition}
+
+        socketSceneTransition={nextPage}
+        socketPuzzleToChoices={socketPuzzleToChoices}
+        socketSetShow={socketSetShow}
+      ></IntroThird>}
+
+    { mode === INTROFOURTH && 
+      <IntroFourth
+        sceneTransition={transition}
+
+        socketSceneTransition={nextPage}
+        socketSetInput={socketSetInput}
+        socketPuzzleToChoices={socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+        socketSetPath={socketSetPath}
+        socketSetShow={socketSetShow}
+      ></IntroFourth>}
+
+    { mode === INTROFIFTH && 
+      <IntroFifth
+        sceneTransition={transition}
+
+        socketSceneTransition={nextPage}
+        socketSetInput={socketSetInput}
+        socketPuzzleToChoices={socketPuzzleToChoices}
+        socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+        socketSetPath={socketSetPath}
+        socketSetShow={socketSetShow}
+      ></IntroFifth>}
 
     
     </main>

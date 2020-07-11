@@ -50,6 +50,7 @@ export default function Description(props) {
       <Typist cursor={{show: false}} stdTypingDelay={0} onTypingDone={() => {
         if (!props.dead) {
           {props.setShow(true)}
+          // {props.socketSetShow(true)}
         }
         }}>
         {splitText(props.text, props.maxLen)}
