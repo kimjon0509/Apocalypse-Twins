@@ -3,7 +3,12 @@ const http = require("http");
 const socketIo = require("socket.io");
 
 const port = process.env.PORT || 3001;
-// const index = require("./routes/index");
+
+if (port == null || port == "") {
+  port = 8000;
+}
+
+const index = require("./routes/index");
 
 const app = express();
 // app.use(index);
