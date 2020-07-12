@@ -59,9 +59,15 @@ export default function SubwayStart(props) {
   
   // const DEATHTHREE ='deathThree';
 
-  webSocket.on('scene', (message) => {
-    transition(message)
-  })
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('scene', (message) => {
+        transition(message)
+      })
+    }
+    return () => mounted = false;
+  }, [])
 
   return (
     <div className='scene-layout'>
@@ -95,6 +101,9 @@ export default function SubwayStart(props) {
           socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
           socketSetPath={props.socketSetPath}
           socketSetShow={props.socketSetShow}
+
+          playerId={props.playerId}
+          playerArr={props.playerArr}
         
         ></SubwaySecond>}
       {mode === THIRD && 
@@ -108,6 +117,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayThird>}
       {mode === FOURTH && 
         <SubwayFourth 
@@ -121,6 +133,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayFourth>}
       {mode === FIFTH && 
         <SubwayFifth 
@@ -134,6 +149,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayFifth>}
       {mode === SIXTH && 
       <SubwaySixth 
@@ -147,6 +165,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwaySixth>}
       {mode === SEVENTH && 
         <SubwaySeventh 
@@ -160,6 +181,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwaySeventh>}
       {mode === EIGHTH && 
         <SubwayEighth 
@@ -173,6 +197,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayEighth>}
       {mode === NINTH && 
         <SubwayNinth 
@@ -187,6 +214,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayNinth>}
       {mode === TENTH && 
         <SubwayTenth 
@@ -200,6 +230,9 @@ export default function SubwayStart(props) {
         socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
         socketSetPath={props.socketSetPath}
         socketSetShow={props.socketSetShow}
+
+        playerId={props.playerId}
+        playerArr={props.playerArr}
         ></SubwayTenth>}
       {mode === ELEVENTH && 
         <SubwayEleventh 
@@ -213,6 +246,9 @@ export default function SubwayStart(props) {
           socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
           socketSetPath={props.socketSetPath}
           socketSetShow={props.socketSetShow}
+
+          playerId={props.playerId}
+          playerArr={props.playerArr}
         ></SubwayEleventh>}
       {mode === TWELFTH && 
         <SubwayTwelfth 
@@ -226,6 +262,9 @@ export default function SubwayStart(props) {
           socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
           socketSetPath={props.socketSetPath}
           socketSetShow={props.socketSetShow}
+
+          playerId={props.playerId}
+          playerArr={props.playerArr}
         ></SubwayTwelfth>}
 
       {mode === DEATHONE && <DeathOne heart={props.heart} sceneTransition={transition}></DeathOne>}

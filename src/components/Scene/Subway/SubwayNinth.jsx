@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function SubwaySeventh(props) {
@@ -44,22 +46,65 @@ export default function SubwaySeventh(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('puzzle to choices', (message) => {
+        transition(message);
+      });
+  
+      webSocket.on('show', (message) => {
+        setShow(message);
+      });
+    }
+
+     return () => mounted = false;
+  }, [])
+
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition} scene={'eleventh'} removeHeart ={props.removeHeart} sceneTransition={props.sceneTransition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? 
+        <Timer 
+          scene={'eleventh'} 
+          removeHeart ={props.removeHeart} 
+
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSceneTransition={props.socketSceneTransition}
+
+        ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
+          {<HealthBar 
+            style={styleShow} 
+            heart={props.heart}
+          ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description 
+        className='descripton-layout' 
+        text={sceneDescription} 
+        maxLen={55}
+
+        socketSetShow={props.socketSetShow}
+      ></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'unlock'}
-          style={styleShow} scene={'eleventh'}
-          sceneTransition={props.sceneTransition}
-          puzzleToChoices={transition} 
-          removeHeart ={props.removeHeart} ></KeywordDisplay>}
+          {<KeywordDisplay 
+          keyword={'unlock'}
+          style={styleShow} 
+          scene={'eleventh'}
+          removeHeart ={props.removeHeart} 
+
+          socketSetInput={props.socketSetInput}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSceneTransition={props.socketSceneTransition}
+          socketSetPath={props.socketSetPath}
+          
+          playerId={props.playerId}
+          playerArr={props.playerArr}
+          
+          ></KeywordDisplay>}
         </div>
       }
     </div>

@@ -6,8 +6,8 @@ export default function TitleButton(props) {
 
   return (
     <button className="main-page-button" onClick={() => {
-      props.transport('introFirst');
-      props.socketSceneTransition('introFirst')}
+      props.transport('Subway');
+      props.socketSceneTransition('Subway')}
     }>{props.buttonText}</button>
   );
 }

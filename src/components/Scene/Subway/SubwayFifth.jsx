@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function SubwayFifth(props) {
@@ -34,15 +36,28 @@ export default function SubwayFifth(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('puzzle to choices', (message) => {
+        transition(message);
+      });
+  
+      webSocket.on('show', (message) => {
+        setShow(message);
+      });
+    }
+
+     return () => mounted = false;
+  }, [])
+
   return (
     <div className='scene-layout'>
       {show ? <Timer 
-      transition={transition}
       pass={'pass'}
       scene={'deathOne'}
-      sceneTransition={props.sceneTransition}
 
-      timerRunOut={props.timerRunOut}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
       socketSceneTransition={props.socketSceneTransition}
 
       ></Timer> : <div className='timer-dummy'></div>}
@@ -54,7 +69,14 @@ export default function SubwayFifth(props) {
           ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55} pass={'pass'}></Description>
+      <Description 
+        className='descripton-layout' 
+        text={sceneDescription} 
+        maxLen={55} 
+        pass={'pass'}
+        socketSetShow={props.socketSetShow}
+
+      ></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
@@ -62,7 +84,17 @@ export default function SubwayFifth(props) {
           style={styleShow} 
           pass={'pass'}
           scene={'sixth'}
-          sceneTransition={props.sceneTransition}></KeywordDisplay>}
+          
+          socketSetInput={props.socketSetInput}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSceneTransition={props.socketSceneTransition}
+          socketSetPath={props.socketSetPath}
+          
+          playerId={props.playerId}
+          playerArr={props.playerArr}
+          
+          ></KeywordDisplay>}
         </div>
       }
     </div>
