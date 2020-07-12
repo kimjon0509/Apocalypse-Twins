@@ -49,8 +49,8 @@ export default function Description(props) {
     <div className='description-text'>
       <Typist cursor={{show: false}} stdTypingDelay={0} onTypingDone={() => {
         if (!props.dead) {
-          {props.setShow(true)}
-          // {props.socketSetShow(true)}
+          // {props.setShow(true)}
+          {props.socketSetShow(true)}
         }
         }}>
         {splitText(props.text, props.maxLen)}

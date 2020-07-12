@@ -53,29 +53,32 @@ export default function SubwayFirst(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
-  // sockets
-  // if (webSocket) {
-    console.log(webSocket)
-    webSocket.on('puzzle to choices', (message) => {
-      transition(message);
-    });
+    useEffect(() => {
+      let mounted = true;
+      if(mounted){
+        webSocket.on('puzzle to choices', (message) => {
+          transition(message);
+        });
+      
+        webSocket.on('show best path', (message) => {
+          setPath(message)
+        });
+    
+        webSocket.on('show', (message) => {
+          setShow(message);
+        });
+      }
   
-    webSocket.on('show best path', (message) => {
-      setPath(message)
-    });
-  // }
+       return () => mounted = false;
+    }, [])
   
   
   return (
     <div className='scene-layout'>
       {show ? 
       <Timer
-        puzzleToChoices={transition}
-        // web sockets
-        // timerRunOut={props.timerRunOut}
         socketPuzzleToChoices={props.socketPuzzleToChoices}
         socketSceneTransition={props.socketSceneTransition}
-
         ></Timer> : <div className='timer-dummy'></div>}
 
       <div style={styleShow} className='show-animation'>
@@ -86,17 +89,18 @@ export default function SubwayFirst(props) {
           ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description 
+        className='descripton-layout' 
+        text={testDesc} 
+        maxLen={55}
+        socketSetShow={props.socketSetShow}
+        
+      ></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
             keyword={'noise'}
             style={styleShow}
-            puzzleToChoices={transition}
-            sceneTransition={props.sceneTransition}
-            
-            setPath={setPath}
-
             //socket functions
             socketSetInput={props.socketSetInput}
             socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -116,17 +120,13 @@ export default function SubwayFirst(props) {
           correctPath={buttonClass}
           choice={'Walk'}
           scene={'third'}
-          sceneTransition={props.sceneTransition}
 
-          //sockets
           socketSceneTransition={props.socketSceneTransition}
           ></ButtonChoice>
           <ButtonChoice
           choice={'Train'}
           scene={'second'}
-          sceneTransition={props.sceneTransition}
-          
-          //sockets
+
           socketSceneTransition={props.socketSceneTransition}></ButtonChoice>
         </>
       }

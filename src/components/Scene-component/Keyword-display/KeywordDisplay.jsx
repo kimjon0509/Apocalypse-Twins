@@ -10,14 +10,19 @@ import './KeywordDisplay.scss'
 export default function KeywordDisplay(props) {
   const [input, setInput] = useState([]);
   const [InputFieldBoxClass, setInputFieldBoxClass] = useState('input-field-box');
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('rune selected', (message) => {
+        setInput(message);
+      })
 
-    webSocket.on('rune selected', (message) => {
-      setInput(message);
-    })
-
-    webSocket.on('input box class', (message) => {
-      setInputFieldBoxClass(message);
-    })
+      webSocket.on('input box class', (message) => {
+        setInputFieldBoxClass(message);
+      })
+    }
+    return () => mounted = false;
+  }, [])
 
   return (
     <div className='keyword-display'>
