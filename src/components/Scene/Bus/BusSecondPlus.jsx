@@ -41,14 +41,13 @@ export default function BusSixth(props) {
   const [show, setShow] = useState(false)
   const styleShow = show ? {} : { visibility: 'hidden' }
   useEffect(() => {
-    props.addHeart()
     
       webSocket.on('puzzle to choices', (message) => {
         transition(message);
       });
   }, [])
 
-  const sceneDescription = "Turning on your flashlights, you take a deep breath and enter. You stick together, searching the store for anything of use. After a few minutes you find a first aid kit and put it in your bag. You spend a few more minutes looking around but don’t find much else. You return to the bus and set off towards the hospital.";
+  const sceneDescription = "As you are trying to hotwire the bus, you hear sudden screeching, coming in your direction. You just need a few more seconds. Glancing through the windshield, you see zombies rushing towards you at frightening speed. You lunge for the door lever and pull. The zombies run headfirst into the glass, howling and slamming themselves against it. At last the wires catch and the bus growls to life. You slam the pedal to the floor, plowing through the zombies, crushing their rotting forms with the hulk of the bus. The engine thunders as you swerve onto the street, the trailing zombies falling quickly behind...";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
   return (
@@ -63,7 +62,7 @@ export default function BusSixth(props) {
         {mode === CHOICES &&
           <>
             <ButtonChoice 
-            scene={"fifth"} 
+            scene={"second"} 
             sceneTransition={props.sceneTransition} 
             choice={"Next"}
             socketSceneTransition={props.socketSceneTransition}

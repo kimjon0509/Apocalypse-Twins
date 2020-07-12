@@ -56,7 +56,7 @@ export default function BusFirst(props) {
         text={sceneDescription} 
         maxLen={55}
 
-        scoketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
         socketSetShow={props.socketSetShow}
       ></Description>
 

@@ -5,7 +5,7 @@ import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
-
+import {webSocket} from '../../../webSocket'
 const classNames = require('classnames');
 
 export default function BusNinth(props) {
@@ -39,9 +39,23 @@ export default function BusNinth(props) {
   const CHOICES = 'Choices'
   const styleShow = show ? {} : { visibility: 'hidden' }
   const { mode, transition } = usePuzzleToChoices('Puzzle')
+
+  useEffect ( () => { 
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+  
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
+  }, [])
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer 
+      puzzleToChoices={transition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSceneTransition={props.socketSceneTransition}
+      ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
           {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
@@ -50,14 +64,49 @@ export default function BusNinth(props) {
       <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'quick'} style={styleShow} puzzleToChoices={transition} sceneTransition={props.sceneTransition} setPath={setPath} ></KeywordDisplay>}
+          {<KeywordDisplay 
+          keyword={'quick'} 
+          style={styleShow} 
+          puzzleToChoices={transition} 
+          sceneTransition={props.sceneTransition} 
+          setPath={setPath}
+           //socket functions
+          socketSetInput={props.socketSetInput}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSceneTransition={props.socketSceneTransition}
+          socketSetPath={props.socketSetPath}
+           
+          playerId={props.playerId}
+          playerArr={props.playerArr}
+           >
+            </KeywordDisplay>}
         </div>
       }
       {mode === CHOICES &&
         <>
-          <ButtonChoice correctPath={buttonClass} choice={'Wait and see what the car does'} scene={'tenth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-          <ButtonChoice choice={'Attack'} scene={'eleventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
-          <ButtonChoice choice={'Hide'} scene={'twelfth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice 
+          correctPath={buttonClass} 
+          choice={'Wait and see what the car does'} 
+          scene={'tenth'} 
+          sceneTransition={props.sceneTransition}
+          socketSceneTransition={props.sceneTransition}
+          >
+          </ButtonChoice>
+          <ButtonChoice 
+          choice={'Attack'} 
+          scene={'eleventh'} 
+          sceneTransition={props.sceneTransition}
+          socketSceneTransition={props.socketSceneTransition}
+          >
+          </ButtonChoice>
+          <ButtonChoice 
+          choice={'Hide'} 
+          scene={'twelfth'} 
+          sceneTransition={props.sceneTransition}
+          socketSceneTransition={props.socketSceneTransition}
+          >
+          </ButtonChoice>
         </>
       }
     </div>

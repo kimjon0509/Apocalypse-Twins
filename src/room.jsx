@@ -37,7 +37,7 @@ export default function Room(props) {
     <form className="form-align"> 
     <label className="room-label">
       <span className="room-label">Room: </span>
-      <input className={'input-text'}type="text" name="room" size='15' autofocus onChange={e => {setName(e.target.value)
+      <input className={'input-text'}type="text" name="room" size='15' onChange={e => {setName(e.target.value)
       }}/>
     </label>
     <input className="room-label" type="submit" value="Create Room" onClick={handleSubmit} />
