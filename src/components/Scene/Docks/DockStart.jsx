@@ -8,8 +8,11 @@ import DockFourth2 from './DockFourth2'
 import DockFifth from './DockFifth';
 import DockSixth from './DockSixth';
 import DockSeventh from './DockSeventh';
-import GameOver from '../GameOver/GameOverScreen'
-import TitlePage from '../../Title-page/TitlePage'
+import DockNinth from './DockNinth';
+import DockDeathWarehouse from './DockDeathWarehouse';
+import GameOver from '../GameOver/GameOverScreen';
+
+import {webSocket} from '../../../webSocket';
 
 export default function DockStart(props) {
 
@@ -29,7 +32,7 @@ export default function DockStart(props) {
     return {mode: scene[0], transition };
   }
 
-  const {mode, transition} = useScene('first')
+  const {mode, transition} = useScene('fourth2')
 
   const START = 'first';
   const SECOND = 'second';
@@ -43,23 +46,201 @@ export default function DockStart(props) {
   const NINTH = 'ninth';
   const TENTH = 'tenth';
   const DEAD = 'dead';
+  const DEATHWAREHOUSE = 'deathwarehouse'
   const TITLE = 'start';
+
+  webSocket.on('scene', (message) => {
+    transition(message)
+  })
 
   return (
     <div className='scene-layout'>
-      {mode === START && <DockFirst heart={props.heart} sceneTransition={transition}></DockFirst>}
+      {mode === START &&
+        <DockFirst
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+          sceneTransition={transition}
 
-      {mode === SECOND && <DockSecond heart={props.heart} sceneTransition={transition}></DockSecond>}
-      {mode === THIRD && <DockThird heart={props.heart} sceneTransition={transition}></DockThird>}
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockFirst>}
+
+      {mode === SECOND && 
+        <DockSecond 
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart} 
+          sceneTransition={transition}
+          
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockSecond>}
+      
+      {mode === THIRD && 
+        <DockThird 
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart} 
+          sceneTransition={transition}
+        
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockThird>}
+
+      {mode === FOURTH1 && 
+        <DockFourth1 
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSceneTransition={props.socketSceneTransition}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockFourth1>}
+
+      {mode === FOURTH2 && 
+        <DockFourth2
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+          sceneTransition={transition}
+        
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockFourth2>}
+
+      {mode === FIFTH && 
+        <DockFifth 
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart} 
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockFifth>}
+
+      {mode === SIXTH && 
+        <DockSixth 
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockSixth>}
+      {mode === SEVENTH && 
+        <DockSeventh
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockSeventh>}
+
+        {mode === NINTH && 
+        <DockNinth
+          heart={props.heart}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSetInput={props.socketSetInput}
+          socketSceneTransition={props.socketSceneTransition}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSetPath={props.socketSetPath}
+          socketSetShow={props.socketSetShow}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockNinth>}
+
+        {mode === DEATHWAREHOUSE && 
+        <DockDeathWarehouse 
+          sceneTransition={transition}
+
+          // SOCKETS
+          socketSceneTransition={props.socketSceneTransition}
+          
+          // PLAYERS
+          playerId={props.playerId}
+          playerArr={props.playerArr}>
+        </DockDeathWarehouse>}
+      {/* {mode === TITLE && <TitlePage sceneTransition={transition}></TitlePage>} */}
       {mode === DEAD && <GameOver text="You have died. Try another path next time." maxLen={60} ></GameOver>}
-
-      {mode === FOURTH1 && <DockFourth1 sceneTransition={transition}></DockFourth1>}
-      {mode === FOURTH2 && <DockFourth2 sceneTransition={transition}></DockFourth2>}
-
-      {mode === FIFTH && <DockFifth sceneTransition={transition}></DockFifth>}
-      {mode === SIXTH && <DockSixth sceneTransition={transition}></DockSixth>}
-      {mode === SEVENTH && <DockSeventh sceneTransition={transition}></DockSeventh>}
-      {mode === TITLE && <TitlePage sceneTransition={transition}></TitlePage>}
+      {/* removeHeart ={props.removeHeart} */}
+      {/* sceneTransition={transition} */}
 
       {/* {props.mode === SIXTH && <DockFirst transition={props.transition}></DockFirst>}
       {props.mode === SEVENTH && <DockFirst transition={props.transition}></DockFirst>}

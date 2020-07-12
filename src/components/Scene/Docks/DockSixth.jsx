@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function DockSixth(props) {
@@ -43,18 +45,53 @@ export default function DockSixth(props) {
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Choices')
+
+  const [path, setPath] = useState(false)
+  const buttonClass = classNames("button", {
+    "correct-path": path,
+  });
+
+  webSocket.on('puzzle to choices', (message) => {
+    transition(message);
+  });
+
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ?
+        <Timer
+          puzzleToChoices={transition}
+          addHeart={props.addHeart}
+          removeHeart={props.removeHeart}
+
+          // SOCKETS
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSceneTransition={props.socketSceneTransition}>
+        </Timer> : <div className='timer-dummy'></div>}
+
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
+          {<HealthBar 
+            heart={props.heart}
+            style={styleShow}>   
+          </HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description 
+        className='descripton-layout'
+        setShow={setShow}
+        text={sceneDescription}
+        maxLen={55}>
+      </Description>
       {mode === CHOICES && 
         <>
-          <ButtonChoice choice={'Return to Title'} scene={'start'} sceneTransition={props.sceneTransition}></ButtonChoice>
+          <ButtonChoice 
+            choice={'Return to Title'} 
+            scene={'start'} 
+            sceneTransition={props.sceneTransition}
+            
+            // SOCKETS
+            socketSceneTransition={props.socketSceneTransition}>
+          </ButtonChoice>
         </>
       }
     </div>

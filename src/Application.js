@@ -212,10 +212,21 @@ function Application() {
     }
 
     {mode === DOCK && 
-        <Dock 
+        <Dock
+
+          socketSetInput={socketSetInput}
+          socketSceneTransition={socketSceneTransition}
+          socketPuzzleToChoices={socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+          socketSetPath={socketSetPath}
+          socketSetShow={socketSetShow}
+
           heart={heart}
           addHeart={addHeart}
           removeHeart={removeHeart}
+
+          playerId={playerId}
+          playerArr={playerArr}
         ></Dock>
     }
 
@@ -226,6 +237,9 @@ function Application() {
         socketSceneTransition={nextPage}
         socketPuzzleToChoices={socketPuzzleToChoices}
         socketSetShow={socketSetShow}
+
+        playerId={playerId}
+        playerArr={playerArr}
         ></IntroFirst>}
 
     { mode === INTROSECOND && 
@@ -250,6 +264,9 @@ function Application() {
         socketSceneTransition={nextPage}
         socketPuzzleToChoices={socketPuzzleToChoices}
         socketSetShow={socketSetShow}
+
+        playerId={playerId}
+        playerArr={playerArr}
       ></IntroThird>}
 
     { mode === INTROFOURTH && 
@@ -262,6 +279,9 @@ function Application() {
         socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
         socketSetPath={socketSetPath}
         socketSetShow={socketSetShow}
+
+        playerId={playerId}
+        playerArr={playerArr}
       ></IntroFourth>}
 
     { mode === INTROFIFTH && 
@@ -274,6 +294,9 @@ function Application() {
         socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
         socketSetPath={socketSetPath}
         socketSetShow={socketSetShow}
+
+        playerId={playerId}
+        playerArr={playerArr}
       ></IntroFifth>}
 
     

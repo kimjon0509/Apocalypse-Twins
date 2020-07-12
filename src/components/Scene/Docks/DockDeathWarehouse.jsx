@@ -12,7 +12,7 @@ const classNames = require('classnames');
 
 export default function DockFourth(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "After waiting for the zombies to pass, you linger a little too long. You each suddenly feel a knife at your throat as someone grabs you from behind. “Nice and easy, then. And keep quiet. Don’t want the dead walkers to hear us. \n Your captors bring you to an abandoned dockside building, where they tie you up and sit you back to back near a pile of broken glass and debris. “We’ll just sit tight until Selena gets here. She’s a bit busy with something at the moment.";
+  const sceneDescription = "You fail to loosen the ropes before the pack is upon you, ripping, tearing, devouring…";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
@@ -53,33 +53,25 @@ export default function DockFourth(props) {
 
   return (
     <div className='scene-layout'>
-      <div style={styleShow} className='show-animation'>
-        <div className='heart-right'>
-          {<HealthBar 
-            heart={props.heart} 
-            style={styleShow} >
-          </HealthBar>}
-        </div>
-      </div>
-      <Description 
-        className='descripton-layout' 
-        setShow={setShow} 
-        text={sceneDescription} 
-        maxLen={55}>
-      </Description>
-      
-      {mode === CHOICES && 
-        <>
-          <ButtonChoice 
-            choice={'Next'}  
-            scene={'fourth2'} 
-            sceneTransition={props.sceneTransition}
+    <Description
+      className='descripton-layout'
+      setShow={setShow}
+      puzzleToChoices={transition} text={sceneDescription} maxLen={55}
 
-            // SOCKETS
-            socketSceneTransition={props.socketSceneTransition}>
-          </ButtonChoice>
-        </>
-      }
+      scoketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetShow={props.socketSetShow}
+    ></Description>
+    <div style={styleShow} className='show-animation'>
+      <div className='heart-right'>
+        {mode === CHOICES &&
+          <ButtonChoice
+            scene={"dead"}
+            sceneTransition={props.sceneTransition}
+            socketSceneTransition={props.socketSceneTransition}
+          choice={"Next"}></ButtonChoice>
+        }
+      </div>
     </div>
+  </div>
   )
 }
