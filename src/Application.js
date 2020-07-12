@@ -176,9 +176,20 @@ function Application() {
 
      { mode === BUS && 
      <Bus
+      //sockets
+      socketSetInput={socketSetInput}
+      socketSceneTransition={socketSceneTransition}
+      socketPuzzleToChoices={socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={socketSetInputFieldBoxClass}
+      socketSetPath={socketSetPath}
+      socketSetShow={socketSetShow}
+      
       heart={heart}
       addHeart={addHeart}
       removeHeart={removeHeart}
+
+      playerId={playerId}
+      playerArr={playerArr}
      ></Bus>
      }
 

@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 
 import BusFirst from './BusFirst';
 import BusSecond from './BusSecond';
+import BusSecondPlus from './BusSecondPlus'
 import BusThird from './BusThird';
+import BusThirdPlus from './BusThirdPlus'
 import BusFourth from './BusFourth';
 import BusFifth from './BusFifth';
 import BusSixth from './BusSixth';
@@ -15,6 +17,7 @@ import BusTwelfth from "./BusTwelfth";
 import BusThirteenth from "./BusThirteen";
 import BusFourteenth from "./BusFourteenth";
 import GameOver from '../GameOver/GameOverScreen'
+import {webSocket} from '../../../webSocket'
 
 export default function BusStart(props) {
 
@@ -38,7 +41,9 @@ export default function BusStart(props) {
 
   const START = 'first';
   const SECOND = 'second';
+  const SECONDPLUS = 'secondPlus'
   const THIRD = 'third';
+  const THIRDPLUS = 'thirdPlus'
   const FOURTH = 'fourth';
   const FIFTH = 'fifth';
   const SIXTH = 'sixth';
@@ -51,24 +56,175 @@ export default function BusStart(props) {
   const THIRTEENTH = 'thirteenth';
   const FOURTEENTH = 'fourteenth';
   const DEAD = 'dead'
-
+  webSocket.on('scene', (message) => {
+    transition(message)
+  })
   return (
     <div className='scene-layout'>
-      {mode === START && <BusFirst heart={props.heart} sceneTransition={transition}></BusFirst>}
-      {mode === SECOND && <BusSecond heart={props.heart} sceneTransition={transition}></BusSecond>}
-      {mode === THIRD && <BusThird heart={props.heart} sceneTransition={transition}></BusThird>} 
-      {mode === FOURTH && <BusFourth heart={props.heart} sceneTransition={transition}></BusFourth>}
-      {mode === FIFTH && <BusFifth heart={props.heart} sceneTransition={transition}></BusFifth>}
-      {mode === SIXTH && <BusSixth heart={props.heart} addHeart={props.addHeart} sceneTransition={transition}></BusSixth>}
-      {mode === SEVENTH && <BusSeventh heart={props.heart} sceneTransition={transition}></BusSeventh>}
-      {mode === EIGHTH && <BusEighth heart={props.heart} sceneTransition={transition}></BusEighth>}
-      {mode === NINTH && <BusNinth heart={props.heart} sceneTransition={transition}></BusNinth>}
-      {mode === TENTH && <BusTenth heart={props.heart} sceneTransition={transition}></BusTenth>}
-      {mode === ELEVENTH && <BusEleventh heart={props.heart} removeHeart={props.removeHeart} sceneTransition={transition}></BusEleventh>}
-      {mode === TWELFTH && <BusTwelfth heart={props.heart} sceneTransition={transition}></BusTwelfth>}
-      {mode === THIRTEENTH && <BusThirteenth heart={props.heart} sceneTransition={transition}></BusThirteenth>}
-      {mode === FOURTEENTH && <BusFourteenth heart={props.heart} sceneTransition={transition}></BusFourteenth>}
-      {mode === DEAD && <GameOver text="You have died, try another path"></GameOver>}
+      {mode === START && 
+      <BusFirst 
+      heart={props.heart} 
+      sceneTransition={transition}
+      //sockets
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+
+      </BusFirst>}
+      {mode === SECOND && 
+      <BusSecond 
+      heart={props.heart} 
+      sceneTransition={transition}
+      //sockets
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusSecond>}
+      {mode === SECONDPLUS && 
+      <BusSecondPlus 
+      heart={props.heart}
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}
+      ></BusSecondPlus>
+      }
+      {mode === THIRD && 
+      <BusThird 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusThird>}
+      {mode === THIRDPLUS &&
+      <BusThirdPlus
+      heart={props.heart}
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}
+      ></BusThirdPlus>}
+      {mode === FOURTH && 
+      <BusFourth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusFourth>}
+      {mode === FIFTH && 
+      <BusFifth heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusFifth>}
+      {mode === SIXTH && 
+      <BusSixth 
+      heart={props.heart} 
+      addHeart={props.addHeart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}
+      >
+      </BusSixth>}
+      {mode === SEVENTH && 
+      <BusSeventh 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusSeventh>}
+      {mode === EIGHTH && 
+      <BusEighth 
+      heart={props.heart} 
+      sceneTransition={transition}>
+      socketSceneTransition={props.socketSceneTransition}
+      </BusEighth>}
+      {mode === NINTH && 
+      <BusNinth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusNinth>}
+      {mode === TENTH && 
+      <BusTenth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusTenth>}
+      {mode === ELEVENTH && 
+      <BusEleventh 
+      heart={props.heart} 
+      removeHeart={props.removeHeart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusEleventh>}
+      {mode === TWELFTH && 
+      <BusTwelfth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusTwelfth>}
+      {mode === THIRTEENTH && 
+      <BusThirteenth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusThirteenth>}
+      {mode === FOURTEENTH && 
+      <BusFourteenth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusFourteenth>}
+      {mode === DEAD && 
+      <GameOver text="You have died, try another path"
+      //socketSceneTransition={props.socketSceneTransition}
+      //sceneTransition={props.sceneTransition}
+      >
+      </GameOver>}
     </div>
   )
 }
