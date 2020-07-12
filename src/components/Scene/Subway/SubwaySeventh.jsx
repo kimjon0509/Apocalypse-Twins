@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function SubwaySeventh(props) {
@@ -49,23 +51,64 @@ export default function SubwaySeventh(props) {
     "correct-path": path,
   });
 
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('puzzle to choices', (message) => {
+        transition(message);
+      });
+    
+      webSocket.on('show best path', (message) => {
+        setPath(message)
+      });
+  
+      webSocket.on('show', (message) => {
+        setShow(message);
+      });
+    }
+
+     return () => mounted = false;
+  }, [])
+
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? 
+        <Timer 
+        socketPuzzleToChoices={props.socketPuzzleToChoices}
+        socketSceneTransition={props.socketSceneTransition}
+          
+        ></Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar style={styleShow} heart={props.heart}></HealthBar>}
+          {<HealthBar 
+            style={styleShow} 
+            heart={props.heart}
+          ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description 
+        className='descripton-layout' 
+        text={sceneDescription} 
+        maxLen={55}
+
+        socketSetShow={props.socketSetShow}
+
+      ></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
           keyword={'shaft'}
           style={styleShow}
-          puzzleToChoices={transition} 
-          setPath={setPath}
-          ></KeywordDisplay>}
+
+          socketSetInput={props.socketSetInput}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSceneTransition={props.socketSceneTransition}
+          socketSetPath={props.socketSetPath}
+          
+          playerId={props.playerId}
+          playerArr={props.playerArr}
+        ></KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
@@ -73,12 +116,12 @@ export default function SubwaySeventh(props) {
         <ButtonChoice
           choice={"Elevator"}
           scene={'deathTwo'}
-          sceneTransition={props.sceneTransition}></ButtonChoice>
+          socketSceneTransition={props.socketSceneTransition}></ButtonChoice>
         <ButtonChoice 
           correctPath={buttonClass}
           choice={'Stairs'}
           scene={'ninth'}
-          sceneTransition={props.sceneTransition}
+          socketSceneTransition={props.socketSceneTransition}
         ></ButtonChoice>
         </>
       }

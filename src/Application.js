@@ -40,16 +40,7 @@ function Application() {
   // let socket = socketIOClient(ENDPOINT);
   // let playerArr;
   useEffect(() => {
-    // socket = socketIOClient(ENDPOINT);
-
-    // socket.emit('system', 'playerId')
-
-    // socket.on('system', (message) => {
-    //   console.log(message.player);
-    //   playerArr = message.player
-    // });
-    // setSocket(socketIOClient(ENDPOINT));
-
+    
     webSocket.on('game', (scene) => {
       console.log('client scene')
       transition(scene);
