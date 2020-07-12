@@ -53,13 +53,13 @@ export default function DockFifth(props) {
     "correct-path": path,
   });
 
-  webSocket.on('puzzle to choices', (message) => {
-    transition(message);
-  });
+  // webSocket.on('puzzle to choices', (message) => {
+  //   transition(message);
+  // });
   
-  webSocket.on('show best path', (message) => {
-    setPath(message);
-  });
+  // webSocket.on('show best path', (message) => {
+  //   setPath(message);
+  // });
 
   return (
     <div className='scene-layout'>

@@ -95,9 +95,9 @@ function Application() {
 
  const [path, setPath] = useState(false)
 
+
   function useTransport(initial) {
     const [transport, setTransport] = useState([initial]);
-  
     function transition(changeMode, replace = false) {
       setTransport(prev => {
         if (replace) {

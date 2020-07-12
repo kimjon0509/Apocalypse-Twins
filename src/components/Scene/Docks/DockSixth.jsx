@@ -51,9 +51,9 @@ export default function DockSixth(props) {
     "correct-path": path,
   });
 
-  webSocket.on('puzzle to choices', (message) => {
-    transition(message);
-  });
+  // webSocket.on('puzzle to choices', (message) => {
+  //   transition(message);
+  // });
 
   return (
     <div className='scene-layout'>

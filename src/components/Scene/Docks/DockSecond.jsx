@@ -51,13 +51,13 @@ export default function DockSecond(props) {
     "correct-path": path,
   });
 
-  webSocket.on('puzzle to choices', (message) => {
-    transition(message);
-  });
+  // webSocket.on('puzzle to choices', (message) => {
+  //   transition(message);
+  // });
   
-  webSocket.on('show best path', (message) => {
-    setPath(message);
-  });
+  // webSocket.on('show best path', (message) => {
+  //   setPath(message);
+  // });
 
   return (
     <div className='scene-layout'>
@@ -66,7 +66,7 @@ export default function DockSecond(props) {
           puzzleToChoices={transition}
           addHeart={props.addHeart}
           removeHeart={props.removeHeart}
-          
+
           socketPuzzleToChoices={props.socketPuzzleToChoices}
           socketSceneTransition={props.socketSceneTransition}>
         </Timer> : <div className='timer-dummy'></div>}

@@ -32,7 +32,7 @@ export default function KeywordDisplay(props) {
       ></InputClear>
       <InputField
         input={input}
-        setInput={setInput}
+        // setInput={setInput}
         setInputFieldBoxClass={setInputFieldBoxClass}
         InputFieldBoxClass={InputFieldBoxClass}
         keyword={props.keyword}

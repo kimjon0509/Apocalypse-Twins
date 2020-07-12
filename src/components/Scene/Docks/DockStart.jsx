@@ -32,7 +32,7 @@ export default function DockStart(props) {
     return {mode: scene[0], transition };
   }
 
-  const {mode, transition} = useScene('fourth2')
+  const {mode, transition} = useScene('first')
 
   const START = 'first';
   const SECOND = 'second';
