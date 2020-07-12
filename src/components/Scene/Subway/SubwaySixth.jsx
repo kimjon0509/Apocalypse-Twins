@@ -6,6 +6,8 @@ import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
+import {webSocket} from '../../../webSocket';
+
 const classNames = require('classnames');
 
 export default function SubwayFirst(props) {
@@ -44,6 +46,21 @@ export default function SubwayFirst(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Choices')
 
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      webSocket.on('puzzle to choices', (message) => {
+        transition(message);
+      });
+  
+      webSocket.on('show', (message) => {
+        setShow(message);
+      });
+    }
+
+     return () => mounted = false;
+  }, [])
+
   return (
     <div className='scene-layout'>
       <div style={styleShow} className='show-animation'>
@@ -54,12 +71,22 @@ export default function SubwayFirst(props) {
           ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description 
+        className='descripton-layout' 
+        text={sceneDescription} 
+        maxLen={55}
+
+        socketSetShow={props.socketSetShow}
+      ></Description>
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
         {mode === CHOICES && 
           <>
-          <ButtonChoice choice={"Next"} scene={'eighth'} sceneTransition={props.sceneTransition}></ButtonChoice>
+            <ButtonChoice 
+              choice={"Next"} 
+              scene={'eighth'} 
+              socketSceneTransition={props.socketSceneTransition}
+            ></ButtonChoice>
           </>
         }
         </div>
