@@ -5,7 +5,7 @@ import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
-
+import {webSocket} from '../../../webSocket'
 const classNames = require('classnames');
 // need to add gas state, whether the player has gas or not
 export default function BusThird(props) {
@@ -48,24 +48,71 @@ export default function BusThird(props) {
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
+
+  useEffect ( () => { 
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+  
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
+  }, [])
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}></Timer> : <div className='timer-dummy'></div>}
+      {show ? <Timer 
+      puzzleToChoices={transition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSceneTransition={props.socketSceneTransition}
+      >
+      </Timer> : <div className='timer-dummy'></div>}
       <div style={styleShow} className='show-animation'>
         <div className='heart-right'>
-          {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
+          {<HealthBar 
+          heart={props.heart} 
+          style={styleShow} >
+            </HealthBar>}
         </div>
       </div>
       <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
-          {<KeywordDisplay keyword={'gas'} style={styleShow} sceneTransition={props.transition} puzzleToChoices={transition} setPath={setPath}></KeywordDisplay>}
+          {<KeywordDisplay 
+          keyword={'gas'} 
+          style={styleShow} 
+          sceneTransition={props.transition} 
+          puzzleToChoices={transition} 
+          setPath={setPath}
+           //socket functions
+          socketSetInput={props.socketSetInput}
+          socketPuzzleToChoices={props.socketPuzzleToChoices}
+          socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+          socketSceneTransition={props.socketSceneTransition}
+          socketSetPath={props.socketSetPath}
+           
+          playerId={props.playerId}
+          playerArr={props.playerArr}
+          >
+            </KeywordDisplay>}
         </div>
       }
       {mode === CHOICES && 
         <>
-        <ButtonChoice correctPath={buttonClass} choice={'Check the convience store'} scene={'sixth'} sceneTransition={props.sceneTransition}></ButtonChoice>
-        <ButtonChoice choice={'Go back to bus'} scene={'seventh'} sceneTransition={props.sceneTransition}></ButtonChoice>
+        <ButtonChoice 
+        correctPath={buttonClass} 
+        choice={'Check the convience store'} 
+        scene={'sixth'} 
+        sceneTransition={props.sceneTransition}
+        socketSceneTransition={props.socketSceneTransition}
+        >
+        </ButtonChoice>
+        <ButtonChoice 
+        choice={'Go back to bus'} 
+        scene={'seventh'} 
+        sceneTransition={props.sceneTransition}
+        socketSceneTransition={props.socketSceneTransition}
+        >
+        </ButtonChoice>
         </>
       }
     </div>

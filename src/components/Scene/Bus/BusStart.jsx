@@ -125,8 +125,9 @@ export default function BusStart(props) {
       <BusSixth 
       heart={props.heart} 
       addHeart={props.addHeart} 
-      sceneTransition={transition}>
+      sceneTransition={transition}
       socketSceneTransition={props.socketSceneTransition}
+      >
       </BusSixth>}
       {mode === SEVENTH && 
       <BusSeventh 
@@ -165,13 +166,48 @@ export default function BusStart(props) {
       {mode === TENTH && 
       <BusTenth 
       heart={props.heart} 
-      sceneTransition={transition}>
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
       </BusTenth>}
-      {mode === ELEVENTH && <BusEleventh heart={props.heart} removeHeart={props.removeHeart} sceneTransition={transition}></BusEleventh>}
-      {mode === TWELFTH && <BusTwelfth heart={props.heart} sceneTransition={transition}></BusTwelfth>}
-      {mode === THIRTEENTH && <BusThirteenth heart={props.heart} sceneTransition={transition}></BusThirteenth>}
-      {mode === FOURTEENTH && <BusFourteenth heart={props.heart} sceneTransition={transition}></BusFourteenth>}
-      {mode === DEAD && <GameOver text="You have died, try another path"></GameOver>}
+      {mode === ELEVENTH && 
+      <BusEleventh 
+      heart={props.heart} 
+      removeHeart={props.removeHeart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusEleventh>}
+      {mode === TWELFTH && 
+      <BusTwelfth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusTwelfth>}
+      {mode === THIRTEENTH && 
+      <BusThirteenth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSetInput={props.socketSetInput}
+      socketSceneTransition={props.socketSceneTransition}
+      socketPuzzleToChoices={props.socketPuzzleToChoices}
+      socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}
+      socketSetPath={props.socketSetPath}
+      socketSetShow={props.socketSetShow}
+
+      playerId={props.playerId}
+      playerArr={props.playerArr}>
+      </BusThirteenth>}
+      {mode === FOURTEENTH && 
+      <BusFourteenth 
+      heart={props.heart} 
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}>
+      </BusFourteenth>}
+      {mode === DEAD && 
+      <GameOver text="You have died, try another path"
+      //socketSceneTransition={props.socketSceneTransition}
+      //sceneTransition={props.sceneTransition}
+      >
+      </GameOver>}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import ButtonNext from '../../Scene-component/ButtonNext';
 import Description from '../../Scene-component/Description';
 import HealthBar from '../../Scene-component/HealthBar';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
+import {webSocket} from '../../../webSocket';
 
 const classNames = require('classnames');
 
@@ -41,6 +42,10 @@ export default function BusSixth(props) {
   const styleShow = show ? {} : { visibility: 'hidden' }
   useEffect(() => {
     props.addHeart()
+    
+      webSocket.on('puzzle to choices', (message) => {
+        transition(message);
+      });
   }, [])
 
   const sceneDescription = "Turning on your flashlights, you take a deep breath and enter. You stick together, searching the store for anything of use. After a few minutes you find a first aid kit and put it in your bag. You spend a few more minutes looking around but don’t find much else. You return to the bus and set off towards the hospital.";
@@ -57,7 +62,13 @@ export default function BusSixth(props) {
       <div style={styleShow} className='show-animation'>
         {mode === CHOICES &&
           <>
-            <ButtonChoice scene={"fifth"} sceneTransition={props.sceneTransition} choice={"Next"}></ButtonChoice>
+            <ButtonChoice 
+            scene={"fifth"} 
+            sceneTransition={props.sceneTransition} 
+            choice={"Next"}
+            socketSceneTransition={props.socketSceneTransition}
+            >
+            </ButtonChoice>
           </>
         }
       </div>
