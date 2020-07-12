@@ -8,7 +8,7 @@ if (port == null || port == "") {
   port = 8000;
 }
 
-// const index = require("./routes/index");
+const index = require("./routes/index");
 
 const app = express();
 // app.use(index);
