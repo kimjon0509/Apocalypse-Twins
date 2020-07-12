@@ -12,7 +12,7 @@ export default function BusFirst(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "You’re driving down a country road, on your way to the hospital. It’s pitch dark out. For a moment you both just take in the nighttime scenery, relaxed after the stress of what you’ve already been through today. Glancing in your rearview mirror, you notice lights. Headlights. Gaining fast. Instinctively, you both join minds, seeking to unveil the safest course…";
 
-  const testDesc = "Hello I'm in the country road now"
+  //const testDesc = "Hello I'm in the country road now"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);

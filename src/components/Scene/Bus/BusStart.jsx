@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 
 import BusFirst from './BusFirst';
 import BusSecond from './BusSecond';
+import BusSecondPlus from './BusSecondPlus'
 import BusThird from './BusThird';
+import BusThirdPlus from './BusThirdPlus'
 import BusFourth from './BusFourth';
 import BusFifth from './BusFifth';
 import BusSixth from './BusSixth';
@@ -39,7 +41,9 @@ export default function BusStart(props) {
 
   const START = 'first';
   const SECOND = 'second';
+  const SECONDPLUS = 'secondPlus'
   const THIRD = 'third';
+  const THIRDPLUS = 'thirdPlus'
   const FOURTH = 'fourth';
   const FIFTH = 'fifth';
   const SIXTH = 'sixth';
@@ -88,6 +92,13 @@ export default function BusStart(props) {
       playerId={props.playerId}
       playerArr={props.playerArr}>
       </BusSecond>}
+      {mode === SECONDPLUS && 
+      <BusSecondPlus 
+      heart={props.heart}
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}
+      ></BusSecondPlus>
+      }
       {mode === THIRD && 
       <BusThird 
       heart={props.heart} 
@@ -101,7 +112,13 @@ export default function BusStart(props) {
 
       playerId={props.playerId}
       playerArr={props.playerArr}>
-      </BusThird>} 
+      </BusThird>}
+      {mode === THIRDPLUS &&
+      <BusThirdPlus
+      heart={props.heart}
+      sceneTransition={transition}
+      socketSceneTransition={props.socketSceneTransition}
+      ></BusThirdPlus>}
       {mode === FOURTH && 
       <BusFourth 
       heart={props.heart} 

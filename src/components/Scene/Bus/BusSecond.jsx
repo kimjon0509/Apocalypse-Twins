@@ -61,7 +61,8 @@ export default function BusSecond(props) {
 
   return (
     <div className='scene-layout'>
-      {show ? <Timer puzzleToChoices={transition}
+      {show ? <Timer 
+      puzzleToChoices={transition}
         //sockets
         socketPuzzleToChoices={props.socketPuzzleToChoices}
         socketSceneTransition={props.socketSceneTransition}
@@ -74,12 +75,13 @@ export default function BusSecond(props) {
             </HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription1} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription2} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
           keyword={'gas'} 
           style={styleShow} 
+          transition={transition}
           puzzleToChoices={transition} 
           sceneTransition={props.sceneTransition} 
           setPath={setPath} 
@@ -112,7 +114,7 @@ export default function BusSecond(props) {
         scene={'fifth'} 
         sceneTransition={props.sceneTransition}
         //sockets
-        socketSceneTransition={props.sceneTransition}
+        socketSceneTransition={props.socketSceneTransition}
         >
 
         </ButtonChoice>

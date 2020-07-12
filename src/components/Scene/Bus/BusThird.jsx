@@ -74,14 +74,15 @@ export default function BusThird(props) {
             </HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={testDesc} maxLen={55}></Description>
+      <Description className='descripton-layout' setShow={setShow} text={sceneDescription2} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
           keyword={'gas'} 
           style={styleShow} 
-          sceneTransition={props.transition} 
-          puzzleToChoices={transition} 
+          transition={transition}
+          puzzleToChoices={transition}
+          sceneTransition={props.sceneTransition}  
           setPath={setPath}
            //socket functions
           socketSetInput={props.socketSetInput}

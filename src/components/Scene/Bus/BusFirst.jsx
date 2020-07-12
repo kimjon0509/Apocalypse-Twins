@@ -81,7 +81,7 @@ export default function BusFirst(props) {
           keyword={'key'} 
           style={styleShow} 
           puzzleToChoices={transition} 
-          sceneTransition={props.transition} 
+          sceneTransition={props.sceneTransition} 
           setPath={setPath}
            //socket functions
            socketSetInput={props.socketSetInput}
@@ -100,7 +100,7 @@ export default function BusFirst(props) {
         <>
         <ButtonChoice 
         choice={'Hotwire the bus'} 
-        scene={'second'} 
+        scene={'secondPlus'} 
         sceneTransition={props.sceneTransition}
         //sockets
         socketSceneTransition={props.socketSceneTransition}>
@@ -109,7 +109,7 @@ export default function BusFirst(props) {
         <ButtonChoice 
         correctPath={buttonClass} 
         choice={'Use key'} 
-        scene={'third'} 
+        scene={'thirdPlus'} 
         sceneTransition={props.sceneTransition}
         //sockets
         socketSceneTransition={props.socketSceneTransition}
