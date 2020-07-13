@@ -4,9 +4,9 @@ const socketIo = require("socket.io");
 
 const port = process.env.PORT || 3001;
 
-if (port == null || port == "") {
-  port = 8000;
-}
+// if (port == null || port == "") {
+//   port = 8000;
+// }
 
 const index = require("./routes/index");
 
