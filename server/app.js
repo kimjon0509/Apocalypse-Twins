@@ -3,9 +3,13 @@ const http = require("http");
 const socketIo = require("socket.io");
 const path = require('path');
 
+const cors = require('cors');
+
 const port = process.env.PORT || 3001;
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '..','build')));
 app.get('/', function(req, res) {
