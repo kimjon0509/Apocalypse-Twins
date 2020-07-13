@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import './App.css';
 import { webSocket } from './webSocket';
 
 import './Application.scss'
@@ -7,7 +6,6 @@ import TitlePage from './components/Title-page/TitlePage'
 import Subway from './components/Scene/Subway/SubwayStart'
 import Bus from './components/Scene/Bus/BusStart'
 import Dock from './components/Scene/Docks/DockStart'
-//import Dock from './components/Scene/Dock/DockStart'
 
 import HeartEmpty from './components/Scene-component/HeartEmpty'
 import HeartFull from './components/Scene-component/HeartFull'
@@ -19,26 +17,11 @@ import IntroFifth from './components/Scene/Intro/IntroFifth'
 
 import Room from './room'
 
-//socket client
-// import socketIOClient from "socket.io-client";
-// const ENDPOINT = "http://localhost:3001";
-
-//USE THIS LATER FOR RUNES
-// props.playerArr[1] === props.playerId
-
-
-// import BackgroundImage from "./images/BackgroundImage.jpg"
-
 function Application() {
   const [playerArr, setPlayerArr] = useState([]);
   const [room , setRoom] = useState(0)
   const [playerId, setPlayerId] = useState('')
-  // const [socket, setSocket] = useState(undefined);
 
-  //maybe set state of runes and pass it through to inputfield
-
-  // let socket = socketIOClient(ENDPOINT);
-  // let playerArr;
   useEffect(() => {
     
     webSocket.on('game', (scene) => {

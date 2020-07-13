@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
@@ -12,8 +11,6 @@ const classNames = require('classnames');
 
 export default function SubwayEighth(props) {
   const sceneDescription = "After hours of walking, you finally reach the station. You see a wide set of stairs leading up and out. A little further ahead in the tunnel, a dim red light glows above a maintenance door. Which is the safest path?";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -52,22 +49,23 @@ export default function SubwayEighth(props) {
   });
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
     
-      webSocket.on('show best path', (message) => {
-        setPath(message)
-      });
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
   
-      webSocket.on('show', (message) => {
-        setShow(message);
-      });
-    }
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
 
-     return () => mounted = false;
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
   }, [])
 
   return (

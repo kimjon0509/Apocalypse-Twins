@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
@@ -13,8 +12,6 @@ const classNames = require('classnames');
 export default function SubwaySeventh(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "At last you pull into the station near the hospital. As the train comes to a halt, a warning flashes into your shared minds. Looking out onto the platform, all appears quiet. It seems there are two ways out -- the elevator, or the stairs. But which path holds the greater danger?";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -52,8 +49,6 @@ export default function SubwaySeventh(props) {
   });
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
       webSocket.on('puzzle to choices', (message) => {
         transition(message);
       });
@@ -65,9 +60,12 @@ export default function SubwaySeventh(props) {
       webSocket.on('show', (message) => {
         setShow(message);
       });
-    }
 
-     return () => mounted = false;
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
   }, [])
 
   return (

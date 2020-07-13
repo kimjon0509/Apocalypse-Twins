@@ -2,19 +2,13 @@ import React, {useEffect, useState} from "react";
 import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
-import Timer from '../../Scene-component/Timer';
-import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
 import {webSocket} from '../../../webSocket';
 
-const classNames = require('classnames');
-
 export default function SubwayFourth(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "Not wanting to risk the unknown, you increase your speed. Who would be down here, alive, anyway? As the train passes over the figure, you hear a brief scream and feel a sudden thud before all goes quiet again…";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -41,24 +35,22 @@ export default function SubwayFourth(props) {
   
     return {mode: history[0], transition, back };
   }
-  const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Choices')
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
-  
-      webSocket.on('show', (message) => {
-        setShow(message);
-      });
-    }
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
 
-     return () => mounted = false;
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
 
   return (

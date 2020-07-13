@@ -1,20 +1,13 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
-import Timer from '../../Scene-component/Timer';
-import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
 import HealthBar from '../../Scene-component/HealthBar';
 
 import {webSocket} from '../../../webSocket';
 
-const classNames = require('classnames');
-
 export default function SubwayFirst(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "Lifting the man between you, you get him inside and pull yourselves in just as your psychic shroud fails. The bell chimes and the doors close a second before the zombies hurl themselves into the train. They slam against the windows, their rotting faces pressed against the glass. You rush to the driver’s compartment and hit the throttle. The zombies fall away as you pick up speed and continue into the tunnel.";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -41,24 +34,23 @@ export default function SubwayFirst(props) {
   
     return {mode: history[0], transition, back };
   }
-  const PUZZLE = 'Puzzle'
   const CHOICES = 'Choices'
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Choices')
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
-  
-      webSocket.on('show', (message) => {
-        setShow(message);
-      });
-    }
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
 
-     return () => mounted = false;
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
 
   return (

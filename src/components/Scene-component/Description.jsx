@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './Description.scss'
-import $ from 'jquery'
 import Typist from 'react-typist';
 
 export default function Description(props) {
@@ -40,14 +39,13 @@ export default function Description(props) {
     })
     return splitTextArr.map((sentence, i) => {
       return (
-        i === 0 ? <p className='text-content'>{format(sentence)}</p> : <p className='text-content'>{sentence}</p> 
+        i === 0 ? <p key={i} className='text-content'>{format(sentence)}</p> : <p key={i} className='text-content'>{sentence}</p> 
       )
     })
   }
   return(
     <Typist cursor={{show: false}} stdTypingDelay={0} onTypingDone={() => {
       if (!props.dead) {
-        // {props.setShow(true)}
           {props.socketSetShow(true)}
         }
         }}>

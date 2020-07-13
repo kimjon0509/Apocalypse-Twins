@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import Description from '../../Scene-component/Description';
-import HealthBar from '../../Scene-component/HealthBar';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 
 import { webSocket } from '../../../webSocket';
-
-const classNames = require('classnames');
 
 export default function IntroFirst(props) {
 
@@ -50,6 +46,12 @@ export default function IntroFirst(props) {
     webSocket.on('show', (message) => {
       setShow(message);
     });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
+
   }, [])
 
   const sceneDescription = "You hear a groan from the other side. Denise opens the door and Vince slumps in, badly injured. Denise’s face goes pale. \“This doesn’t look good…\” \nGetting him to the couch, Denise looks over the wound. \“He’s going to need serious medicine. Medicine we don’t have.\” She looks at the two of you.";

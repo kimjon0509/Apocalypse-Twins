@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
-import Timer from '../../Scene-component/Timer';
-import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
-import HealthBar from '../../Scene-component/HealthBar';
 
 import { webSocket } from '../../../webSocket';
 
-const classNames = require('classnames');
-
 export default function BusFirst(props) {
   const [show, setShow] = useState(false)
-  const sceneDescription = "\“You both need to get to the hospital. Fast. Maybe you could take the subway tunnels. There’s also that old bus sitting in the lot out back. Or you could try your luck with the boaters.\”\n*Vince passes out.*\n\“Either way, you better hurry.\”";
-
-  const testDesc = "Hello I'm in the country road now"
+  const sceneDescription = "“You both need to get to the hospital. Fast. Maybe you could take the subway tunnels. There’s also that old bus sitting in the lot out back. Or you could try your luck with the boaters.”\n*Vince passes out.*\n“Either way, you better hurry.”";
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -39,6 +31,11 @@ export default function BusFirst(props) {
     webSocket.on('show', (message) => {
       setShow(message);
     });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
 
   const CHOICES = 'Choices'
