@@ -11,7 +11,7 @@ if (port == null || port == "") {
 const index = require("./routes/index");
 
 const app = express();
-// app.use(index);
+app.use(index);
 
 const server = http.createServer(app);
 
