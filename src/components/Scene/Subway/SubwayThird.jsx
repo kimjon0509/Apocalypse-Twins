@@ -14,8 +14,6 @@ export default function SubwayThird(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "Leaving the station behind, the tunnel is cold, dark, and quiet. After walking for some time, you stop short as you hear a groan from the darkness ahead. Unsure of its origin, you both extend your awareness, trying to sense what danger might lurk there…";
 
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
-
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
   
@@ -52,22 +50,23 @@ export default function SubwayThird(props) {
   });
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
-    
-      webSocket.on('show best path', (message) => {
-        setPath(message)
-      });
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
   
-      webSocket.on('show', (message) => {
-        setShow(message);
-      });
-    }
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
 
-     return () => mounted = false;
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
   }, [])
 
   return (

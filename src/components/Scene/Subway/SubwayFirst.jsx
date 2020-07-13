@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
@@ -13,8 +12,6 @@ const classNames = require('classnames');
 export default function SubwayFirst(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "You make your way down the grimey steps into the darkness of the subway station. Everything is quiet—the trains stopped operating not long after this all started. Looking down the tunnel to the right, you see a train parked on the tracks. Maybe it still works. To your left, the direction of the hospital, the tunnel continues into darkness. On foot would be quieter, but who knows what might be down there, and Vince is running out of time. You join minds, trying to sense which way holds danger...";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -53,24 +50,25 @@ export default function SubwayFirst(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
-    useEffect(() => {
-      let mounted = true;
-      if(mounted){
-        webSocket.on('puzzle to choices', (message) => {
-          transition(message);
-        });
+  useEffect(() => {
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+        
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
       
-        webSocket.on('show best path', (message) => {
-          setPath(message)
-        });
-    
-        webSocket.on('show', (message) => {
-          setShow(message);
-        });
-      }
-  
-       return () => mounted = false;
-    }, [])
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
+  }, [])
   
   
   return (
@@ -91,7 +89,7 @@ export default function SubwayFirst(props) {
       </div>
       <Description 
         className='descripton-layout' 
-        text={testDesc} 
+        text={sceneDescription} 
         maxLen={55}
         socketSetShow={props.socketSetShow}
         

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
-import Timer from '../../Scene-component/Timer';
 import KeywordDisplay from '../../Scene-component/Keyword-display/KeywordDisplay';
-import HealthBar from '../../Scene-component/HealthBar';
 
 import { webSocket } from '../../../webSocket';
 
@@ -13,8 +10,6 @@ const classNames = require('classnames');
 export default function BusFirst(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "Denise is worried. “Twins, maybe you should do your… thing. Try to sense if Vince is ok or if we should stay put.";
-
-  const testDesc = "Hello I'm in the country road now"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -45,6 +40,11 @@ export default function BusFirst(props) {
   webSocket.on('show', (message) => {
     setShow(message);
   });
+
+  return function cleanup() {
+    webSocket.off('puzzle to choices');
+    webSocket.off('show');
+  }
 }, [])
 
   

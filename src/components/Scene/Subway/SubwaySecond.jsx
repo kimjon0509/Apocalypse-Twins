@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import ButtonNext from '../../Scene-component/ButtonNext';
 import ButtonChoice from '../../Scene-component/ButtonChoice';
 import Description from '../../Scene-component/Description';
 import Timer from '../../Scene-component/Timer';
@@ -13,8 +12,6 @@ const classNames = require('classnames');
 export default function SubwaySecond(props) {
   const [show, setShow] = useState(false)
   const sceneDescription = "You board the train and find it still operates. It groans to life and you depart the station, moving slowly as the headlights illuminate the tunnel ahead. As the tunnel begins to turn, you suddenly see a figure lying across the tracks. Who or what it might be, alive or dead, you can’t tell.\nYou join minds to try to foresee the danger of stopping to find out..";
-
-  const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
 
   function usePuzzleToChoices(initial) {
     const [history, setHistory] = useState([initial]);
@@ -52,22 +49,22 @@ export default function SubwaySecond(props) {
   });
 
   useEffect(() => {
-    let mounted = true;
-    if(mounted){
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
     
-      webSocket.on('show best path', (message) => {
-        setPath(message)
-      });
+    webSocket.on('show best path', (message) => {
+      setPath(message)
+    });
   
-      webSocket.on('show', (message) => {
-        setShow(message);
-      });
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
     }
-
-     return () => mounted = false;
   }, [])
 
   return (
