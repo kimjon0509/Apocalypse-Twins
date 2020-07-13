@@ -22,7 +22,7 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "server": "node server/app.js",
+    "server": "nodemon server/app.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
