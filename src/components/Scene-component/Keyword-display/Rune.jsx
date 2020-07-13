@@ -79,8 +79,6 @@ export default function Rune(props) {
           onClick={() => {
             if(props.playerArr[0] === props.playerId) {
               if(props.input.length < props.keyword.length) {
-                // props.setInput([...props.input, decodeHtml(runeChar)])
-                //showSelectedRune called this send the rune to the server
                 props.socketSetInput([...props.input, decodeHtml(runeChar)])
               }
             }

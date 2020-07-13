@@ -5,27 +5,8 @@ import HeartEmpty from "./HeartEmpty"
 import GameOver from "../Scene/GameOver/GameOverScreen"
 
 export default function HealthBar(props) {
-  // const [health, setHealth] = useState(3) 
-  // let hearts = []
-  // for (let i = 0; i < health; i++) {
-  //   hearts.push(
-  //     <HeartFull />)
-  // }
-  // if (health < 3) {
-  //   for (let j = 0; j < 3 - health; j++) {
-  //     hearts.push(<HeartEmpty />)
-  //   }
-  // }
 
-  // if (health < 1) {
-  //   return (
-  //     <div>
-  //       GAME OVER
-  //     </div>
-  //   )
-  // }
   return (
-    // buttons are used for testing health state
     <div className="healthbar">
       {props.heart}
       {/* <button onClick={() => setHealth(health - 1)}></button>
