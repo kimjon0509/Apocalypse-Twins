@@ -101,7 +101,6 @@ export default function SubwayFirst(props) {
           {<KeywordDisplay
             keyword={'noise'}
             style={styleShow}
-            //socket functions
             socketSetInput={props.socketSetInput}
             socketPuzzleToChoices={props.socketPuzzleToChoices}
             socketSetInputFieldBoxClass={props.socketSetInputFieldBoxClass}

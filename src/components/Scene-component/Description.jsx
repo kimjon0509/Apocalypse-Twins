@@ -41,7 +41,6 @@ export default function Description(props) {
     return splitTextArr.map((sentence, i) => {
       return (
         i === 0 ? <p className='text-content'>{format(sentence)}</p> : <p className='text-content'>{sentence}</p> 
-        // <p className='text-content'>{sentence}</p> 
       )
     })
   }
