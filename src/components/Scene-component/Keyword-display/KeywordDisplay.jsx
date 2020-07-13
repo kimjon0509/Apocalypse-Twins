@@ -21,6 +21,11 @@ export default function KeywordDisplay(props) {
         setInputFieldBoxClass(message);
       })
     }
+
+    return function cleanup() {
+      webSocket.off('rune selected');
+      webSocket.off('input box class');
+    }
     return () => mounted = false;
   }, [])
 
