@@ -87,7 +87,7 @@ export default function BusThird(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
-          keyword={'gas'} 
+          keyword={'petrol'} 
           style={styleShow} 
            //socket functions
           socketSetInput={props.socketSetInput}

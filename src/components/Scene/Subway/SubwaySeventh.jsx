@@ -95,7 +95,7 @@ export default function SubwaySeventh(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
-          keyword={'shaft'}
+          keyword={'crowded'}
           style={styleShow}
 
           socketSetInput={props.socketSetInput}

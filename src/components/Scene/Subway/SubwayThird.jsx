@@ -96,7 +96,7 @@ export default function SubwayThird(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
-          keyword={'saviour'}
+          keyword={'protect'}
           style={styleShow}
 
           socketSetInput={props.socketSetInput}
