@@ -49,19 +49,28 @@ export default function BusFirst(props) {
   const styleShow = show ? {} : {visibility: 'hidden'}
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
-  useEffect ( () => { 
+  useEffect(() => {
     webSocket.on('puzzle to choices', (message) => {
       transition(message);
     });
-  
+        
     webSocket.on('show best path', (message) => {
       setPath(message)
     });
+      
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
   }, [])
   return (
     <div className='scene-layout'>
       {show ? <Timer 
-      puzzleToChoices={transition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
       socketSceneTransition={props.socketSceneTransition}>
 
@@ -74,15 +83,12 @@ export default function BusFirst(props) {
           </HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' text={sceneDescription} maxLen={55}  socketSetShow={props.socketSetShow}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
           keyword={'key'} 
           style={styleShow} 
-          puzzleToChoices={transition} 
-          sceneTransition={props.sceneTransition} 
-          setPath={setPath}
            //socket functions
            socketSetInput={props.socketSetInput}
            socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -101,7 +107,6 @@ export default function BusFirst(props) {
         <ButtonChoice 
         choice={'Hotwire the bus'} 
         scene={'secondPlus'} 
-        sceneTransition={props.sceneTransition}
         //sockets
         socketSceneTransition={props.socketSceneTransition}>
         </ButtonChoice>
@@ -110,7 +115,6 @@ export default function BusFirst(props) {
         correctPath={buttonClass} 
         choice={'Use key'} 
         scene={'thirdPlus'} 
-        sceneTransition={props.sceneTransition}
         //sockets
         socketSceneTransition={props.socketSceneTransition}
         >

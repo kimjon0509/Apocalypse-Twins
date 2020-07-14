@@ -41,11 +41,18 @@ export default function BusSixth(props) {
   const [show, setShow] = useState(false)
   const styleShow = show ? {} : { visibility: 'hidden' }
   useEffect(() => {
-    props.addHeart()
-    
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+      
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
 
   const sceneDescription = "Turning on your flashlights, you take a deep breath and enter. You stick together, searching the store for anything of use. After a few minutes you find a first aid kit and put it in your bag. You spend a few more minutes looking around but don’t find much else. You return to the bus and set off towards the hospital.";
@@ -58,13 +65,12 @@ export default function BusSixth(props) {
           {<HealthBar heart={props.heart} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} puzzleToChoices={transition} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' socketSetShow={props.socketSetShow}  text={sceneDescription} maxLen={55}></Description>
       <div style={styleShow} className='show-animation'>
         {mode === CHOICES &&
           <>
             <ButtonChoice 
             scene={"fifth"} 
-            sceneTransition={props.sceneTransition} 
             choice={"Next"}
             socketSceneTransition={props.socketSceneTransition}
             >

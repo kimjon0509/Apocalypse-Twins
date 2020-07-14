@@ -41,10 +41,19 @@ export default function BusFourth(props) {
   const { mode, transition } = usePuzzleToChoices('Choices')
   const [show, setShow] = useState(false)
   const styleShow = show ? {} : {visibility: 'hidden'}
-  useEffect ( () => { 
+  useEffect(() => {
     webSocket.on('puzzle to choices', (message) => {
       transition(message);
     });
+      
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
   return (
     <div className='scene-layout'>
@@ -53,13 +62,12 @@ export default function BusFourth(props) {
           {<HealthBar heart={props.heart} ></HealthBar>}
         </div>
         </div>
-      <Description className='descripton-layout' setShow={setShow} puzzleToChoices={transition} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' socketSetShow={props.socketSetShow} puzzleToChoices={transition} text={sceneDescription} maxLen={55}></Description>
       <div style={styleShow} className='show-animation'>
       {mode === CHOICES &&
         <>
           <ButtonChoice 
-          scene={"dead"} 
-          sceneTransition={props.sceneTransition} 
+          scene={"dead"}  
           choice={"Next"}
           socketSceneTransition={props.socketSceneTransition}
           >

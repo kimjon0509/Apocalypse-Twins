@@ -41,10 +41,18 @@ export default function BusSixth(props) {
   const [show, setShow] = useState(false)
   const styleShow = show ? {} : { visibility: 'hidden' }
   useEffect(() => {
-    
-      webSocket.on('puzzle to choices', (message) => {
-        transition(message);
-      });
+    webSocket.on('puzzle to choices', (message) => {
+      transition(message);
+    });
+      
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show');
+    }
   }, [])
 
   const sceneDescription = "As you are trying to hotwire the bus, you hear sudden screeching, coming in your direction. You just need a few more seconds. Glancing through the windshield, you see zombies rushing towards you at frightening speed. You lunge for the door lever and pull. The zombies run headfirst into the glass, howling and slamming themselves against it. At last the wires catch and the bus growls to life. You slam the pedal to the floor, plowing through the zombies, crushing their rotting forms with the hulk of the bus. The engine thunders as you swerve onto the street, the trailing zombies falling quickly behind...";
@@ -57,13 +65,12 @@ export default function BusSixth(props) {
           {<HealthBar heart={props.heart} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} puzzleToChoices={transition} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' puzzleToChoices={transition} text={sceneDescription} maxLen={55}  socketSetShow={props.socketSetShow}></Description>
       <div style={styleShow} className='show-animation'>
         {mode === CHOICES &&
           <>
             <ButtonChoice 
             scene={"second"} 
-            sceneTransition={props.sceneTransition} 
             choice={"Next"}
             socketSceneTransition={props.socketSceneTransition}
             >

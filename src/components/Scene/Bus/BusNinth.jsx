@@ -40,19 +40,28 @@ export default function BusNinth(props) {
   const styleShow = show ? {} : { visibility: 'hidden' }
   const { mode, transition } = usePuzzleToChoices('Puzzle')
 
-  useEffect ( () => { 
+  useEffect(() => {
     webSocket.on('puzzle to choices', (message) => {
       transition(message);
     });
-  
+        
     webSocket.on('show best path', (message) => {
       setPath(message)
     });
+      
+    webSocket.on('show', (message) => {
+      setShow(message);
+    });
+
+    return function cleanup() {
+      webSocket.off('puzzle to choices');
+      webSocket.off('show best path');
+      webSocket.off('show');
+    }
   }, [])
   return (
     <div className='scene-layout'>
       {show ? <Timer 
-      puzzleToChoices={transition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
       socketSceneTransition={props.socketSceneTransition}
       ></Timer> : <div className='timer-dummy'></div>}
@@ -61,15 +70,12 @@ export default function BusNinth(props) {
           {<HealthBar heart={props.heart} style={styleShow} ></HealthBar>}
         </div>
       </div>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' socketSetShow={props.socketSetShow} text={sceneDescription} maxLen={55}></Description>
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
           keyword={'quick'} 
           style={styleShow} 
-          puzzleToChoices={transition} 
-          sceneTransition={props.sceneTransition} 
-          setPath={setPath}
            //socket functions
           socketSetInput={props.socketSetInput}
           socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -89,21 +95,18 @@ export default function BusNinth(props) {
           correctPath={buttonClass} 
           choice={'Wait and see what the car does'} 
           scene={'tenth'} 
-          sceneTransition={props.sceneTransition}
           socketSceneTransition={props.sceneTransition}
           >
           </ButtonChoice>
           <ButtonChoice 
           choice={'Attack'} 
           scene={'eleventh'} 
-          sceneTransition={props.sceneTransition}
           socketSceneTransition={props.socketSceneTransition}
           >
           </ButtonChoice>
           <ButtonChoice 
           choice={'Hide'} 
           scene={'twelfth'} 
-          sceneTransition={props.sceneTransition}
           socketSceneTransition={props.socketSceneTransition}
           >
           </ButtonChoice>
