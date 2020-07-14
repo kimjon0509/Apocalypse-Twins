@@ -53,7 +53,7 @@ export default function IntroFirst(props) {
     }
   }, [])
 
-  const sceneDescription = "You hear a thud against the door. Denise rushes over. “Vince?”";
+  const sceneDescription = "Working together, you sense Vince is in danger. At that moment, you hear a thud against the door. Denise rushes over. “Vince?”";
 
   const testDesc = "Hello my name is blah Hello my name is blah Hello my name is blah"
   return (

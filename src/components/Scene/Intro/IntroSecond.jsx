@@ -63,7 +63,7 @@ export default function BusFirst(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
-            keyword={'aware'}
+            keyword={'wound'}
             style={styleShow}
             puzzleToChoices={transition} 
 

@@ -72,7 +72,7 @@ export default function SubwayFifth(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay
-          keyword={'deed'}
+          keyword={'haste'}
           style={styleShow} 
           pass={'pass'}
           scene={'sixth'}

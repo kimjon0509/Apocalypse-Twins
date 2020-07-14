@@ -101,7 +101,7 @@ export default function BusNinth(props) {
         <>
         <ButtonChoice 
         correctPath={buttonClass} 
-        choice={'Wait and see what the car does (no gas)'} 
+        choice={'Wait and see what the car does'} 
         scene={'fourteenth'} 
         socketSceneTransition={props.socketSceneTransition}
         >

@@ -103,7 +103,7 @@ export default function BusFirst(props) {
         <>
           <ButtonChoice 
           correctPath={buttonClass} 
-          choice={'Take a nearby side road, and continue driving(gas)'} 
+          choice={'Take a nearby side road, and continue driving'} 
           scene={'eighth'} 
           socketSceneTransition={props.socketSceneTransition}
           >

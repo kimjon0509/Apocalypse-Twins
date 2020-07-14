@@ -87,7 +87,7 @@ export default function BusFirst(props) {
       {mode === PUZZLE &&
         <div style={styleShow} className='show-animation'>
           {<KeywordDisplay 
-          keyword={'key'} 
+          keyword={'seats'} 
           style={styleShow} 
            //socket functions
            socketSetInput={props.socketSetInput}
