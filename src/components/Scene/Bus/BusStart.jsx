@@ -64,7 +64,6 @@ export default function BusStart(props) {
       {mode === START && 
       <BusFirst 
       heart={props.heart} 
-      sceneTransition={transition}
       //sockets
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
@@ -80,7 +79,6 @@ export default function BusStart(props) {
       {mode === SECOND && 
       <BusSecond 
       heart={props.heart} 
-      sceneTransition={transition}
       //sockets
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
@@ -95,14 +93,13 @@ export default function BusStart(props) {
       {mode === SECONDPLUS && 
       <BusSecondPlus 
       heart={props.heart}
-      sceneTransition={transition}
       socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}
       ></BusSecondPlus>
       }
       {mode === THIRD && 
       <BusThird 
       heart={props.heart} 
-      sceneTransition={transition}
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -116,18 +113,17 @@ export default function BusStart(props) {
       {mode === THIRDPLUS &&
       <BusThirdPlus
       heart={props.heart}
-      sceneTransition={transition}
       socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}
       ></BusThirdPlus>}
       {mode === FOURTH && 
       <BusFourth 
       heart={props.heart} 
-      sceneTransition={transition}
-      socketSceneTransition={props.socketSceneTransition}>
+      socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusFourth>}
       {mode === FIFTH && 
       <BusFifth heart={props.heart} 
-      sceneTransition={transition}
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -142,14 +138,13 @@ export default function BusStart(props) {
       <BusSixth 
       heart={props.heart} 
       addHeart={props.addHeart} 
-      sceneTransition={transition}
       socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}
       >
       </BusSixth>}
       {mode === SEVENTH && 
       <BusSeventh 
       heart={props.heart} 
-      sceneTransition={transition}
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -163,13 +158,12 @@ export default function BusStart(props) {
       {mode === EIGHTH && 
       <BusEighth 
       heart={props.heart} 
-      sceneTransition={transition}>
       socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusEighth>}
       {mode === NINTH && 
       <BusNinth 
       heart={props.heart} 
-      sceneTransition={transition}
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -183,26 +177,25 @@ export default function BusStart(props) {
       {mode === TENTH && 
       <BusTenth 
       heart={props.heart} 
-      sceneTransition={transition}
-      socketSceneTransition={props.socketSceneTransition}>
+      socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusTenth>}
       {mode === ELEVENTH && 
       <BusEleventh 
       heart={props.heart} 
       removeHeart={props.removeHeart} 
-      sceneTransition={transition}
-      socketSceneTransition={props.socketSceneTransition}>
+      socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusEleventh>}
       {mode === TWELFTH && 
       <BusTwelfth 
       heart={props.heart} 
-      sceneTransition={transition}
-      socketSceneTransition={props.socketSceneTransition}>
+      socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusTwelfth>}
       {mode === THIRTEENTH && 
       <BusThirteenth 
       heart={props.heart} 
-      sceneTransition={transition}
       socketSetInput={props.socketSetInput}
       socketSceneTransition={props.socketSceneTransition}
       socketPuzzleToChoices={props.socketPuzzleToChoices}
@@ -216,8 +209,8 @@ export default function BusStart(props) {
       {mode === FOURTEENTH && 
       <BusFourteenth 
       heart={props.heart} 
-      sceneTransition={transition}
-      socketSceneTransition={props.socketSceneTransition}>
+      socketSceneTransition={props.socketSceneTransition}
+      socketSetShow={props.socketSetShow}>
       </BusFourteenth>}
       {mode === DEAD && 
       <GameOver text="You have died, try another path"

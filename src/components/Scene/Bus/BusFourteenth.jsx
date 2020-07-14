@@ -11,7 +11,7 @@ export default function BusTenth(props) {
   const testDesc = "Hello he was nice so he drove us to hospital"
   return (
     <div className='scene-layout'>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' socketSetShow={props.socketSetShow} text={sceneDescription} maxLen={55}></Description>
     </div>
   )
 }

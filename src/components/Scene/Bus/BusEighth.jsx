@@ -16,7 +16,7 @@ export default function BusFirst(props) {
 
   return (
     <div className='scene-layout'>
-      <Description className='descripton-layout' setShow={setShow} text={sceneDescription} maxLen={55}></Description>
+      <Description className='descripton-layout' socketSetShow={props.socketSetShow} text={sceneDescription} maxLen={55}></Description>
     </div>
   )
 }
